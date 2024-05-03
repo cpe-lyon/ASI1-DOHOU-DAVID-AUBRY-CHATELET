@@ -23,7 +23,7 @@
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-                <form class="ui form" action="./getCard" method="GET" name="mySearch">
+                <form class="ui form" method="GET" name="mySearch" onsubmit="getCard(mySearch)">
                     <h3 class="ui dividing header">Select the Card Name to Search</h3>
                     <div class="two fields">
                         <div class="field">
@@ -32,7 +32,7 @@
                         <div class="field">
                             <div class="ui transparent icon input">
                                 <input type="text" placeholder="Search..." name="search">
-                                <i class="search link icon"  onclick="mySearch.submit();"></i>
+                                <i class="search link icon"  onclick="getCard(mySearch)"></i>
                             </div>
                         </div>
                     </div>
@@ -53,9 +53,6 @@
                     <template id="selectedCard">
                         <div class="card">
 
-                            <div class="content">
-                                <img id="cardFamilyImgId" class="ui avatar image" src={{family_src}}> <span id="cardFamilyNameId">{{family_name}} </span>
-                            </div>
                             <div class="image imageCard">
                                 <div class="blurring dimmable image">
                                     <div class="ui inverted dimmer">
@@ -65,7 +62,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <img id="cardImgId" class="ui centered tiny image" src={{img_src}}>
+                                    <img id="cardImgId" class="ui centered tiny image" src={{img_url}}>
                                 </div>
                             </div>
                             <div class="content">

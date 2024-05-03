@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card details</title>
+    <script src="./js/details.js"></script>
+    <link rel="stylesheet" type="text/css" href="../lib/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+    <template id="detailsTemplate">
+        <div class="card">
+            <div class="content">
+                <img class="ui avatar image" src={{family_src}}> {{family_name}}
+            </div>
+            <div class="image imageCard">
+                <div class="blurring dimmable image">
+                    <div class="ui inverted dimmer">
+                        <div class="content">
+                            <div class="center">
+                                <div class="ui primary button">Add Friend</div>
+                            </div>
+                        </div>
+                    </div>
+                    <img class="ui centered tiny  image" src={{image_src}}>
+                </div>
+            </div>
+            <div class="ui bottom attached button" onclick="showCardDetails('{{cardId}}')">
+                <i class="eye icon"></i>
+                Details
+            </div>
+        </div>
+    </template>
+<div id="cardDetails"></div>
+</body>
+</html>

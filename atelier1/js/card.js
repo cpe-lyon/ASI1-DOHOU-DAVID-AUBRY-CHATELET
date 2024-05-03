@@ -1,4 +1,4 @@
-let cardlist = [
+let _cardlist = [
         {
             family_src:"https://imgc.allpostersimages.com/img/print/affiches/marvel-super-hero-squad-iron-man-standing_a-G-9448041-4985690.jpg",
             family_name:"Jose",
@@ -28,26 +28,34 @@ let cardlist = [
         }
 
     ];
-let template = document.querySelector("#selectedCard");
 
-for(const card of cardlist){
-    let clone = document.importNode(template.content, true);
+let cards = fetch("http://tp.cpe.fr:8083/cards").then(value => {
+    if (! value.ok) {
+        alert(`Erreur lors de la récupération des cartes : ${value.status}`)
+        return
+    }
+    value.json().then(json => loadCards(json))
+})
 
-    newContent= clone.firstElementChild.innerHTML
-                .replace(/{{family_src}}/g, card.family_src)
-                .replace(/{{family_name}}/g, card.family_name)
-                .replace(/{{image_src}}/g, card.image_src)
-                .replace(/{{date}}/g, card.date)
-                .replace(/{{comment}}/g, card.comment)
-                .replace(/{{like}}/g, card.like)
-                .replace(/{{button}}/g, card.button);
-    clone.firstElementChild.innerHTML= newContent;
 
-    let cardContainer= document.querySelector("#gridContainer");
-    cardContainer.appendChild(clone);
+function loadCards(json) {
+    let template = document.querySelector("#selectedCard");
+
+    for(const card of json){
+        let clone = document.importNode(template.content, true);
+
+        newContent= clone.firstElementChild.innerHTML
+            .replace(/{{family_src}}/g, card.smallImgUrl)
+            .replace(/{{family_name}}/g, card.family)
+            .replace(/{{image_src}}/g, card.imgUrl)
+            .replace(/{{cardId}}/g, card.id);
+        clone.firstElementChild.innerHTML= newContent;
+
+        let cardContainer= document.querySelector("#gridContainer");
+        cardContainer.appendChild(clone);
+    }
 }
 
-
-
-
-
+function showCardDetails(id) {
+    location.href = `./details.html?id=${id}`
+}

@@ -23,7 +23,7 @@
                 Messages
             </a>
             <a class="item active">
-                Friends
+                Cards
             </a>
             <div class="right menu">
                 <div class="item">
@@ -42,7 +42,6 @@
                         <div class="ui special cards">
                             <div class="card">
                                 <div class="content">
-                                    <div class="right floated meta">{{date}}</div>
                                     <img class="ui avatar image" src={{family_src}}> {{family_name}}
                                 </div>
                                 <div class="image imageCard">
@@ -57,23 +56,15 @@
                                         <img class="ui centered tiny  image" src={{image_src}}>
                                     </div>
                                 </div>
-                                <div class="content">
-                                    <span class="right floated">
-                                        <i class="heart outline like icon"></i>
-                                        {{like}}
-                                    </span>
-                                    <i class="comment icon"></i>
-                                    {{comment}}
-                                </div>
                                 <div class="extra content">
                                     <div class="ui large transparent left icon input">
                                         <i class="heart outline icon"></i>
                                         <input type="text" placeholder="Add Comment...">
                                     </div>
                                 </div>
-                                <div class="ui bottom attached button">
-                                    <i class="add icon"></i>
-                                    {{button}}
+                                <div class="ui bottom attached button" onclick="showCardDetails('{{cardId}}')">
+                                    <i class="eye icon"></i>
+                                    Details
                                 </div>
                             </div>
                         </div>
