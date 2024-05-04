@@ -2,19 +2,21 @@ package cpe.atelier1.controller;
 
 import cpe.atelier1.model.Card;
 import cpe.atelier1.model.CardFormDTO;
+import cpe.atelier1.services.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class RequestCrt {
 
     @Autowired
-    CardDao cardDao;
+    CardService cardService;
 
     @Value("${welcome.message}")
     private String message;
@@ -23,42 +25,18 @@ public class RequestCrt {
 
     @RequestMapping(value = { "/", "/index" }, method = RequestMethod.GET)
     public String index(Model model) {
-
         model.addAttribute("message", message);
         model.addAttribute("messageLocal", messageLocal);
+        model.addAttribute("cards", cardService.getCards());
 
-        return "index";
+        return "new/card";
     }
 
-    @RequestMapping(value = { "/view"}, method = RequestMethod.GET)
-    public String view(Model model) {
-        model.addAttribute("myPoney", cardDao.getRandomCard() );
-        return "poneyView";
-    }
+    @RequestMapping(value = { "/details/{id}"}, method = RequestMethod.GET)
+    public String details(Model model, @PathVariable int id) {
+        model.addAttribute("card", cardService.getCard(id));
 
-    @RequestMapping(value = { "/addPoney"}, method = RequestMethod.GET)
-    public String addponey(Model model) {
-        CardFormDTO poneyForm = new CardFormDTO();
-        model.addAttribute("poneyForm", poneyForm);
-        return "poneyForm";
-    }
-
-    @RequestMapping(value = { "/addPoney"}, method = RequestMethod.POST)
-    public String addponey(Model model, @ModelAttribute("poneyForm") CardFormDTO cardFormDTO) {
-        Card p = cardDao.addCard(cardFormDTO.getId(), cardFormDTO.getName(), cardFormDTO.getDescription(),
-                cardFormDTO.getFamily(), cardFormDTO.getAffinity(), cardFormDTO.getImgUrl(),
-                cardFormDTO.getSmallImgUrl(), cardFormDTO.getEnergy(), cardFormDTO.getHp(),
-                cardFormDTO.getDefence(), cardFormDTO.getAttack(), cardFormDTO.getPrice(),
-                cardFormDTO.getUserId());
-        model.addAttribute("myPoney", p);
-        return "poneyView";
-
-    }
-
-    @RequestMapping(value = { "/list"}, method = RequestMethod.GET)
-    public String viewList(Model model) {
-        model.addAttribute("poneyList", cardDao.getCardList() );
-        return "poneyViewList";
+        return "new/details";
     }
 
 }
