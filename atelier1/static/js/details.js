@@ -19,6 +19,7 @@ function loadCardsDetails() {
 function loadCardInTemplate(card) {
     let template = document.querySelector("#detailsTemplate");
     let clone = document.importNode(template.content, true);
+
     newContent= clone.firstElementChild.innerHTML
         .replace(/{{family_src}}/g, card.smallImgUrl)
         .replace(/{{family_name}}/g, card.family ? card.family : "Inconnue")
