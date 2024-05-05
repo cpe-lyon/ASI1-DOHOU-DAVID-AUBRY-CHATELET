@@ -18,5 +18,4 @@ fait que les changements qui lui sont apportés ne sont PAS PERSISTANTS.
 Notre application respecte bien le pattern MVC : Notre contrôleur, RequestCrt, utilise des Services, pour l'instant, CardService. Ce service se sert de modèles,
 dans notre cas, CardDAO, afin d'accéder a nos données. Après extraction de ces données depuis notre base (notre JSON), nous utilisons nos templates thymeleaf (pas représenté ici),
 afin de présenter à l'utilisateur les données; Thymeleaf et ses templates constituent donc la vue.
-
 ![Diagramme de classes pour le backend en SpringBoot](./imgs/class.png)
