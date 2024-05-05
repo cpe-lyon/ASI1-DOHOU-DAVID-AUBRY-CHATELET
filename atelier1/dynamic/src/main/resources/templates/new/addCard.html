@@ -25,7 +25,7 @@
         <div class="column"></div>
         <div class="column">
             <form class="ui form" th:action="@{/addCard}" th:object="${card}" th:method="post">
-                <h3 class="ui dividing header">Add User Information</h3>
+                <h3 class="ui dividing header">Submit a new card</h3>
                 <div class="field">
                     <label>Card Name</label>
                     <input th:field="*{name}" type="text" name="card-name" placeholder="Card Name">
