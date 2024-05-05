@@ -2,6 +2,7 @@
 ### Loan Aubry - Mathias Chatelet Ferrety - Medhy Dohou - Rémy David
 
 ## Respect du pattern MVC
+Nos prototypes respectent le pattern MVC car nous avons un controller(RequestCrt) pour la communications des données, des vues(Templates) qui recoivent les données traitées par la partie back-end de notre projet et un model(Card) qui se charge du stockage des données et du traitement des requêtes.
 
 ## Avantages/incovénients Web Statique + Web Service
 
