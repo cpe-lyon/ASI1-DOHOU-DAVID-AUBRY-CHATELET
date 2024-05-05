@@ -1,4 +1,4 @@
-package cpe.atelier1.controller;
+package cpe.atelier1.model.dao;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package cpe.atelier1.model;
+package cpe.atelier1.model.dto;
 
 import lombok.Getter;
 import lombok.Setter;
