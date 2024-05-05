@@ -7,8 +7,21 @@
 </head>
 <body>
 
-<div th:fragment="header">
-    <h1>This is the Fragment Header</h1>
+<div th:fragment="header(page)">
+    <div class="ui pointing menu">
+        <a th:class="'item '+${#strings.equals(page, 'home') ? 'active' : ''}" th:href="@{/}">
+            Home
+        </a>
+        <a th:class="'item '+${#strings.equals(page, 'messages') ? 'active' : ''}" th:href="@{/}">
+            Messages
+        </a>
+        <a th:class="'item '+${#strings.equals(page, 'search_card') ? 'active' : ''}" th:href="@{/search}">
+            Search a card
+        </a>
+        <a th:class="'item '+${#strings.equals(page, 'submit_card') ? 'active' : ''}" th:href="@{/addCard}">
+            Submit a card
+        </a>
+    </div>
 </div>
 </body>
 </html>

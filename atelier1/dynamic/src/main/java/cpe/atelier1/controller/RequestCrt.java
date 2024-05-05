@@ -1,15 +1,25 @@
 package cpe.atelier1.controller;
 
+import cpe.atelier1.model.Card;
 import cpe.atelier1.model.dto.CardFormDTO;
+import cpe.atelier1.model.dto.CardSearchDTO;
 import cpe.atelier1.services.CardService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 @Controller
 public class RequestCrt {
+
+    Logger logger = LoggerFactory.getLogger(RequestCrt.class);
+
 
     @Autowired
     CardService cardService;
@@ -51,5 +61,20 @@ public class RequestCrt {
         return "new/addCard";
     }
 
+    @RequestMapping(value = {"/search"}, method = RequestMethod.GET)
+    public String search(Model model) {
+        model.addAttribute("cardSearch", new CardSearchDTO());
+        return "new/searchCard";
+    }
 
+    @RequestMapping(value = {"/search"}, method = RequestMethod.POST)
+    public String searchResult(@ModelAttribute CardSearchDTO cardSearch, Model model) {
+        logger.info(cardSearch.getCardName());
+        Card card = cardService.searchCard(cardSearch).orElse(null);
+
+        model.addAttribute("cardSearch", new CardSearchDTO());
+        model.addAttribute("card", card);
+
+        return "new/searchCard";
+    }
 }
