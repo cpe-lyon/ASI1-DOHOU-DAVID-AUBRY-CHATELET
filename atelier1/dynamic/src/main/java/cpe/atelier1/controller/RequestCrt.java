@@ -39,4 +39,20 @@ public class RequestCrt {
         return "new/details";
     }
 
+    @RequestMapping(value = {"/addCard"}, method = RequestMethod.GET)
+    public String cardForm(Model model) {
+        model.addAttribute("card", new CardFormDTO());
+
+        return "new/addCard";
+    }
+
+    @RequestMapping(value = {"/addCard"}, method = RequestMethod.POST)
+    public String cardSubmission(@ModelAttribute CardFormDTO card, Model model) {
+        cardService.addCard(card)
+                .ifPresent(e -> model.addAttribute("exception", e.getMessage()));
+
+        model.addAttribute("card", new CardFormDTO());
+        return "new/addCard";
+    }
+
 }

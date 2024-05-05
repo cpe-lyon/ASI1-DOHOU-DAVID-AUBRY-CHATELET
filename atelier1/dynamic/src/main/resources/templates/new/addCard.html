@@ -10,8 +10,8 @@
     <!-- Site Properties -->
     <title>Grid Example - Semantic</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../../../../../lib/Semantic-UI-CSS-master/semantic.min.css">
-    <link rel="stylesheet" type="text/css" href="css/custom.css">
+    <link rel="stylesheet" type="text/css" th:href="@{/js/lib/Semantic-UI-CSS-master/semantic.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}">
 
 </head>
 
@@ -21,69 +21,65 @@
         <div class="column"></div>
         <div class="column"></div>
         <div class="column">
-            <form class="ui form">
+            <form class="ui form" th:action="@{/addCard}" th:object="${card}" th:method="post">
                 <h3 class="ui dividing header">Add User Information</h3>
                 <div class="field">
                     <label>Card Name</label>
-                    <input type="text" name="card-name" placeholder="Card Name">
+                    <input th:field="*{name}" type="text" name="card-name" placeholder="Card Name">
                 </div>
                 <div class="field">
                     <label>Description</label>
-                    <input type="text" name="card-description" placeholder="Card Description">
+                    <input th:field="*{description}" type="text" name="card-description" placeholder="Card Description">
                 </div>
                 <div class="field">
                     <label>Family</label>
-                    <input type="text" name="card-family" placeholder="Card Family">
+                    <input th:field="*{family}" type="text" name="card-family" placeholder="Card Family">
                 </div>
                 <div class="field">
                     <label>Affinity</label>
-                    <input type="text" name="card-affinity" placeholder="Card Affinity">
+                    <input th:field="*{affinity}" type="text" name="card-affinity" placeholder="Card Affinity">
                 </div>
                 <div class="field">
                     <label>Image URL</label>
-                    <input type="text" name="card-imageurl" placeholder="Image URL">
+                    <input th:field="*{imgUrl}" type="text" name="card-imageurl" placeholder="Image URL">
                 </div>
                 <div class="field">
                     <label>Samll Image URL</label>
-                    <input type="text" name="card-smallimageurl" placeholder="Small Image URL">
-                </div>
-                <div class="field">
-                    <label>ID</label>
-                    <input type="number" name="card-id" placeholder="ID">
+                    <input th:field="*{smallImgUrl}" type="text" name="card-smallimageurl" placeholder="Small Image URL">
                 </div>
                 <div class="field">
                     <label>Energy</label>
-                    <input type="number" name="card-energy" placeholder="Energy">
+                    <input th:field="*{energy}" type="number" name="card-energy" placeholder="Energy">
                 </div>
                 <div class="field">
                     <label>HP</label>
-                    <input type="number" name="card-hp" placeholder="HP">
+                    <input th:field="*{hp}" type="number" name="card-hp" placeholder="HP">
                 </div>
                 <div class="field">
                     <label>Defence</label>
-                    <input type="number" name="card-defense" placeholder="Defense">
+                    <input th:field="*{defence}" type="number" name="card-defense" placeholder="Defense">
                 </div>
                 <div class="field">
                     <label>Attack</label>
-                    <input type="number" name="card-attack" placeholder="Attack">
+                    <input th:field="*{attack}" type="number" name="card-attack" placeholder="Attack">
                 </div>
                 <div class="field">
                     <label>Price</label>
-                    <input type="number" name="card-price" placeholder="Price">
+                    <input th:field="*{price}" type="number" name="card-price" placeholder="Price">
                 </div>
                 <div class="field">
                     <label>User ID</label>
-                    <input type="number" name="user-id" placeholder="User ID">
+                    <input th:field="*{userId}" type="number" name="user-id" placeholder="User ID">
                 </div>
                 <button class="ui button" type="submit">Submit</button>
             </form>
         </div>
     </div>
 
-    <script src="../../../../../../../lib/jquery-3.3.1.min.js"></script>
-    <script src="../../../../../../../lib/Semantic-UI-CSS-master/semantic.js"></script>
-    <script src="js/animation-custom.js"></script>
-    <script src="js/addCard.js"></script>
+    <script th:src="@{/js/lib/jquery-3.3.1.min.js}"></script>
+    <script th:src="@{/js/lib/Semantic-UI-CSS-master/semantic.js}"></script>
+    <script th:src="@{/js/animation-custom.js}"></script>
+    <script th:src="@{/js/addCard.js}"></script>
 
 </body>
 
