@@ -69,12 +69,10 @@ public class RequestCrt {
 
     @RequestMapping(value = {"/search"}, method = RequestMethod.POST)
     public String searchResult(@ModelAttribute CardSearchDTO cardSearch, Model model) {
-        logger.info(cardSearch.getCardName());
         Card card = cardService.searchCard(cardSearch).orElse(null);
 
         model.addAttribute("cardSearch", new CardSearchDTO());
         model.addAttribute("card", card);
-
         return "new/searchCard";
     }
 }

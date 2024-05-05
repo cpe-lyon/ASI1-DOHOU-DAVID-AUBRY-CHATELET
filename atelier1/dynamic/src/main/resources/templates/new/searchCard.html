@@ -48,16 +48,15 @@
         <!--    ----------------------------- CARD ----------------------------- -->
         <!------------------------------------------------------------------------->
 
-        <div class="ui five column grid" th:if="${#ctx.containsVariable('card')}">
+        <div class="ui five column grid">
             <div class="column"></div>
             <div class="column"></div>
             <div class="column">
-                <div class="ui special cards" id="cardContainer">
-                    <template id="selectedCard">
+                <div class="ui special cards" id="cardContainer" th:object="${card}" th:if="${card != null }">
                         <div class="card">
                             <div class="image imageCard">
                                 <div class="image">
-                                    <img id="cardImgId" class="ui centered tiny image" th:src="${card.getSmallImgUrl()}">
+                                    <img id="cardImgId" class="ui centered tiny image" th:src="${card.getImgUrl()}">
                                 </div>
                             </div>
                             <div class="content">
@@ -85,7 +84,6 @@
                             </div>
 
                         </div>
-                </template>
                 </div>
             </div>
         </div>

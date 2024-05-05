@@ -53,7 +53,6 @@ public class CardDao {
     public Card getCardByName(String name) {
         for (Card card : this.getCardList()) {
             if (card.getName().equalsIgnoreCase(name)) {
-                logger.info("Found card : {}", card.getName());
                 return card;
             }
         }
