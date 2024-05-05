@@ -10,19 +10,33 @@
     <!-- Site Properties -->
     <title>Grid Example - Semantic</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../../Downloads/ASI1-DOHOU-DAVID-AUBRY-CHATELET-7304875309768a2d16ae284a7a4e5a05cb9e0078/lib/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="../../../../lib/Semantic-UI-CSS-master/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/custom.css">
 
 </head>
 
 <body>
+    <div class="ui pointing menu">
+        <a class="item" href="./card.html">
+            Home
+        </a>
+        <a class="item" href="./card.html">
+            Messages
+        </a>
+        <a class="item" href="./searchCard.html">
+            Search a card
+        </a>
+        <a class="item active" href="./addCard.html">
+            Submit a card
+        </a>
+    </div>
     <div class="ui five column grid">
         <div class="row"></div>
         <div class="column"></div>
         <div class="column"></div>
         <div class="column">
             <form class="ui form">
-                <h3 class="ui dividing header">Add User Information</h3>
+                <h3 class="ui dividing header">Submit new card</h3>
                 <div class="field">
                     <label>Card Name</label>
                     <input type="text" name="card-name" placeholder="Card Name">
@@ -80,8 +94,8 @@
         </div>
     </div>
 
-    <script src="../../../../Downloads/ASI1-DOHOU-DAVID-AUBRY-CHATELET-7304875309768a2d16ae284a7a4e5a05cb9e0078/lib/jquery-3.3.1.min.js"></script>
-    <script src="../../../../Downloads/ASI1-DOHOU-DAVID-AUBRY-CHATELET-7304875309768a2d16ae284a7a4e5a05cb9e0078/lib/Semantic-UI-CSS-master/semantic.js"></script>
+    <script src="../../../../lib/jquery-3.3.1.min.js"></script>
+    <script src="../../../../lib/Semantic-UI-CSS-master/semantic.js"></script>
     <script src="js/animation-custom.js"></script>
     <script src="js/addCard.js"></script>
 
