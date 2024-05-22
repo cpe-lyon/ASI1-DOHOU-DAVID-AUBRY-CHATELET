@@ -1,8 +1,7 @@
 package cpe.atelier2.controller.user;
 
 import cpe.atelier2.domain.user.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +22,11 @@ public class UserController {
         return userService.findAll().stream()
                 .map(userDtoMapper::userToUserDto)
                 .toList();
+    }
+
+    @PostMapping("/register")
+    @ResponseBody
+    public String insertUser(@RequestBody String userData){
+        return userService.insertUser(userData);
     }
 }
