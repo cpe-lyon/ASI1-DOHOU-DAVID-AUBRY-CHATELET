@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card details</title>
+    <script src="js/details.js"></script>
+    <link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-CSS-master/semantic.min.css">
+    <link rel="stylesheet" type="text/css" href="css/custom.css">
+</head>
+<body>
+
+<div class="ui pointing menu">
+    <a class="item" href="./card.html">
+        Home
+    </a>
+    <a class="item" href="./card.html">
+        Messages
+    </a>
+    <a class="item active" href="./searchCard.html">
+        Search a card
+    </a>
+    <a class="item" href="./addCard.html">
+        Submit a card
+    </a>
+</div>
+    <template id="detailsTemplate">
+        <div class="ui container">
+            <div class="content">
+                <img class="ui avatar image" src={{family_src}}> {{family_name}}
+            </div>
+            <div class="content centered">
+                <h3>{{name}}</h3>
+            </div>
+            <div class="image imageCard">
+                <div class="blurring dimmable image">
+                    <img class="ui centered tiny image" src={{image_src}}>
+                </div>
+            </div>
+            <div class="text centered">
+                <blockquote>
+                    {{description}}
+                </blockquote>
+            </div>
+            <div class="extra content">
+                <div class="ui centered large transparent centered left icon input">
+                    <i class="heart outline icon"></i>
+                    <input type="text" placeholder="Add Comment...">
+                </div>
+            </div>
+        </div>
+    </template>
+<div id="cardDetails"></div>
+</body>
+</html>
