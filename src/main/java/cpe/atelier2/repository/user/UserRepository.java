@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public class UserRepository implements IUserRepository {
@@ -29,8 +30,11 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public User findByEmail(String email) {
-        return userEntityMapper.userEntityToUser(userJpaRepository.findByEmail(email));
+    public Optional<User> findByEmail(String email) {
+        UserEntity userEntity = userJpaRepository.findByEmail(email);
+
+        if (userEntity == null) return Optional.empty();
+        return Optional.of(userEntityMapper.userEntityToUser(userEntity));
     }
 
     @Override

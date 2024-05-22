@@ -9,4 +9,8 @@ public class UserDtoMapper {
     public UserDTO userToUserDto(User user) {
         return new UserDTO(user.id(), user.email(), user.username(), user.password(), user.money());
     }
+
+    public User userFormDtoToUser(UserFormDTO userDTO) {
+        return new User(null, userDTO.email(), userDTO.username(), userDTO.password(), 0.0);
+    }
 }
