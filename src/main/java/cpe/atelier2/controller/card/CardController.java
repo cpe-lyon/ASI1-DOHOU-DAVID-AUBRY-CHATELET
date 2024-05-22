@@ -1,6 +1,7 @@
 package cpe.atelier2.controller.card;
 
 
+import cpe.atelier2.domain.card.Card;
 import cpe.atelier2.domain.card.CardService;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +29,7 @@ public class CardController {
 
     @PostMapping("/add")
     @ResponseBody
-    public String addNewCard(@RequestBody String data){
-        return cardService.addNewCard(data);
+    public String addNewCard(@RequestBody Card card){
+        return cardService.addNewCard(card);
     }
 }
