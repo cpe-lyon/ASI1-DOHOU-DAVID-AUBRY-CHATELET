@@ -1,7 +1,7 @@
-package cpe.atelier1.repository.card;
+package cpe.atelier2.repository.card;
 
-import cpe.atelier1.domain.card.Card;
-import cpe.atelier1.domain.card.ICardRepository;
+import cpe.atelier2.domain.card.Card;
+import cpe.atelier2.domain.card.ICardRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -18,10 +18,23 @@ public class CardRepository implements ICardRepository {
         this.cardEntityMapper = cardEntityMapper;
     }
 
+    @Override
     public List<Card> findAll() {
         List<CardEntity> cardEntityList = cardJpaRepository.findAll();
         return cardEntityList.stream()
                 .map(cardEntityMapper::cardEntityToCard)
                 .toList();
+    }
+
+    @Override
+    public Card findByName(String name){
+        CardEntity cardEntity = cardJpaRepository.findByName(name);
+
+        return cardEntityMapper.cardEntityToCard(cardEntity);
+    }
+
+    @Override
+    public void addNewCard(Card cardToAdd){
+        cardJpaRepository.save(cardEntityMapper.cardToCardEntity(cardToAdd));
     }
 }

@@ -1,4 +1,4 @@
-package cpe.atelier1.repository.card;
+package cpe.atelier2.repository.card;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,7 +13,7 @@ import lombok.Setter;
 public class CardEntity {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
-        private int id;
+        private Integer id;
         private String name;
         private String description;
         private String family;

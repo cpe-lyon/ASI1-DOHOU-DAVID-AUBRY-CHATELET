@@ -1,10 +1,8 @@
-package cpe.atelier1.controller.card;
+package cpe.atelier2.controller.card;
 
 
-import cpe.atelier1.domain.card.CardService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import cpe.atelier2.domain.card.CardService;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -24,7 +22,13 @@ public class CardController {
     @GetMapping("/all")
     public List<CardDTO> findAll(){
         return cardService.getAllCard().stream()
-                .map(cardDtoMapper::CardToCardDTO)
+                .map(cardDtoMapper::cardToCardDTO)
                 .toList();
+    }
+
+    @PostMapping("/add")
+    @ResponseBody
+    public String addNewCard(@RequestBody String data){
+        return cardService.addNewCard(data);
     }
 }

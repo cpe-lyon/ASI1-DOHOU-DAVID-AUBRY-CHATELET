@@ -1,11 +1,12 @@
-package cpe.atelier1.domain.card;
+package cpe.atelier2.controller.card;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class Card {
+public class CardDTO {
+
     private int id;
     private String name;
     private String description;
@@ -19,7 +20,7 @@ public class Card {
     private float attack;
     private float price;
 
-    public Card(int id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price) {
+    public CardDTO(int id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -34,3 +35,4 @@ public class Card {
         this.price = price;
     }
 }
+
