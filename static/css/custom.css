@@ -1,20 +1,20 @@
-html{
+html {
     font-size: 10px
 }
 
-body{
+body {
     font-size: 10px
 }
 
-.imageCard{
+.imageCard {
     height: 100px;
 }
 
-.limitText{
-    text-overflow:ellipsis;
+.limitText {
+    text-overflow: ellipsis;
 }
 
-.ui.messageLight{
+.ui.messageLight {
     background: #ffffff;
     padding: 1em 1.5em;
     line-height: 1.4285em;
@@ -23,6 +23,10 @@ body{
     box-shadow: 0 0 0 1px rgba(252, 252, 252, 0.22) inset, 0 0 0 0 transparent;
 }
 
-.overflowHiden{
-    overflow:  auto;
+.overflowHiden {
+    overflow: auto;
+}
+
+.connection-link {
+    text-align: center;
 }
