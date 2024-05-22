@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
         <!-- Site Properties -->
-        <title>Grid Example - Semantic</title>
+        <title>ASI1</title>
 
         <link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-CSS-master/semantic.min.css">
         <link rel="stylesheet" type="text/css" href="css/custom.css">
@@ -16,10 +16,10 @@
 
     <body>
         <div class="ui pointing menu">
-            <a class="item active" href="./card.html">
+            <a class="item active" href="./card-list">
                 Home
             </a>
-            <a class="item" href="./card.html">
+            <a class="item" href="./card-list.html">
                 Messages
             </a>
             <a class="item" href="./searchCard.html">
@@ -31,33 +31,19 @@
         </div>
         <div class="ui segment">
             <div class="ui five column grid" id="gridContainer">
-                <div class="column">1</div>
                 <template id="selectedCard">
                     <div class="column">   
                         <div class="ui special cards">
                             <div class="card">
                                 <div class="content">
-                                    <img class="ui avatar image" src={{family_src}}> {{family_name}}
+                                    <img class="ui avatar image left aligned" src={{card_small_img}}> {{card_name}}
                                 </div>
                                 <div class="image imageCard">
                                     <div class="blurring dimmable image">
-                                        <div class="ui inverted dimmer">
-                                            <div class="content">
-                                                <div class="center">
-                                                    <div class="ui primary button">Add Friend</div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <img class="ui centered tiny  image" src={{image_src}}>
+                                        <img class="ui centered tiny  image" src={{card_img}}>
                                     </div>
                                 </div>
-                                <div class="extra content">
-                                    <div class="ui large transparent left icon input">
-                                        <i class="heart outline icon"></i>
-                                        <input type="text" placeholder="Add Comment...">
-                                    </div>
-                                </div>
-                                <div class="ui bottom attached button" onclick="showCardDetails('{{cardId}}')">
+                                <div class="ui bottom attached button" onclick="showCardDetails('{{card_id}}')">
                                     <i class="eye icon"></i>
                                     Details
                                 </div>
