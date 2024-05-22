@@ -19,12 +19,9 @@ public class UserService {
         return iUserRepository.findAll();
     }
 
-    public String insertUser(String userData){
-
-        Gson gson = new GsonBuilder().create();
-        User userToInsert = gson.fromJson(userData, User.class);
-        if (iUserRepository.findByEmail(userToInsert.email()) == null){
-            return iUserRepository.insertUser(userToInsert);
+    public String insertUser(User user){
+        if (iUserRepository.findByEmail(user.email()).isEmpty()){
+            return iUserRepository.insertUser(user);
         }
         return "user already exist, aborting";
     }

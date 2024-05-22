@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
 @RequestMapping("/user")
 public class UserController {
 
@@ -26,7 +27,7 @@ public class UserController {
 
     @PostMapping("/register")
     @ResponseBody
-    public String insertUser(@RequestBody String userData){
-        return userService.insertUser(userData);
+    public String insertUser(@RequestBody UserFormDTO userData){
+        return userService.insertUser(userDtoMapper.userFormDtoToUser(userData));
     }
 }
