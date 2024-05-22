@@ -1,4 +1,4 @@
-package cpe.atelier1.model;
+package cpe.atelier1.domain.card;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -18,9 +18,8 @@ public class Card {
     private float defence;
     private float attack;
     private float price;
-    private int userId;
 
-    public Card(int id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price, int userId) {
+    public Card(int id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -33,6 +32,5 @@ public class Card {
         this.defence = defence;
         this.attack = attack;
         this.price = price;
-        this.userId = userId;
     }
 }
