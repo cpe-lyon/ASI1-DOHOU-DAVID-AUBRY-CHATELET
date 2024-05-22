@@ -6,7 +6,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class Card {
-    private Integer id;
+    private Long id;
     private String name;
     private String description;
     private String family;
@@ -19,7 +19,7 @@ public class Card {
     private float attack;
     private float price;
 
-    public Card(int id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price) {
+    public Card(Long id, String name, String description, String family, String affinity, String imgUrl, String smallImgUrl, float energy, float hp, float defence, float attack, float price) {
         this.id = id;
         this.name = name;
         this.description = description;
