@@ -22,16 +22,12 @@ public class CardService {
         return iCardRepository.findAll();
     }
 
-    public String addNewCard(String data){
-
-        Gson gson = new GsonBuilder().create();
-        Card cardToInsert = gson.fromJson(data, Card.class);
-
-        if (iCardRepository.findByName(cardToInsert.getName()) == null){ //check existing name
+    public String addNewCard(Card card){
+        if (iCardRepository.findByName(card.getName()).isPresent()){ //check existing name
             return "Card Already existing, abort";
         }
 
-        iCardRepository.addNewCard(cardToInsert);
+        iCardRepository.addNewCard(card);
         return "ok, card inserted";
 
     }
