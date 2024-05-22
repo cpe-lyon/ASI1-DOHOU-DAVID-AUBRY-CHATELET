@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - "8080:8080"
+  postgres:
+    container_name: postgres
+    image: postgres:16.3-alpine
+    environment:
+      POSTGRES_PASSWORD: "example"
+    volumes:
+      - "./postgres_data:/var/lib/postgresql"
+      - "./config/postgres/docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d"
+    ports:
+      - "5432:5432"
