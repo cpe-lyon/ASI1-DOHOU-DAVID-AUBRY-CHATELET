@@ -7,7 +7,7 @@ import lombok.Setter;
 @Setter
 public class CardDTO {
 
-    private int id;
+    private Integer id;
     private String name;
     private String description;
     private String family;
