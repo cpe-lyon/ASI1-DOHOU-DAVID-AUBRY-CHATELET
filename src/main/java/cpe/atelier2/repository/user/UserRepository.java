@@ -18,6 +18,7 @@ public class UserRepository implements IUserRepository {
         this.userJpaRepository = userJpaRepository;
     }
 
+    @Override
     public List<User> findAll(){
         List<UserEntity> userEntityList = userJpaRepository.findAll();
 
@@ -26,4 +27,14 @@ public class UserRepository implements IUserRepository {
                 .toList();
     }
 
+    @Override
+    public User findByEmail(String email) {
+        return userEntityMapper.userEntityToUser(userJpaRepository.findByEmail(email));
+    }
+
+    @Override
+    public String insertUser(User user){
+        userJpaRepository.save(userEntityMapper.userToUserEntity(user));
+        return "ok User in base";
+    }
 }
