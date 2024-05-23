@@ -4,8 +4,6 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 
 
 @Service
