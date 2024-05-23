@@ -49,4 +49,9 @@ public class UserRepository implements IUserRepository {
         userJpaRepository.save(userEntityMapper.userToUserEntity(user));
         return "ok User in base";
     }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userJpaRepository.findById(id).map(userEntityMapper::userEntityToUser);
+    }
 }

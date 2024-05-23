@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class HistoryEntityMapper {
 
     public History historyEntityToHistory(HistoryEntity historyEntity) {
-        return new History(historyEntity.getId(), historyEntity.getUserId(),
+        return new History(historyEntity.getId(), historyEntity.getCardId(), historyEntity.getUserId(),
                 historyEntity.getType(), historyEntity.getPrice());
     }
 
