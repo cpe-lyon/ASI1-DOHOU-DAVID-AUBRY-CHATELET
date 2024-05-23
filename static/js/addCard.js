@@ -23,16 +23,27 @@ $(document).ready(function() {
 
         // Envoi de la requête AJAX
         $.ajax({
-            url: 'http://tp.cpe.fr:8083/card',
+            url: 'http://localhost:8090/card/add',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(response) {
-                alert('Données soumises avec succès.');
+                alert('Données soumises avec succès.')
+                window.location = './card-list'
             },
             error: function(xhr, status, error) {
                 alert('Erreur lors de la soumission des données: ' + error);
             }
         });
+        // $.post("http://localhost:8090/card/add",
+        // JSON.stringify(formData),
+        // function(data, status){
+        //     alert("Data: " + data + "\nStatus: " + status);
+        // },'json').done(function( response ) {
+        //     alert('Données soumises avec succès.')
+        //     window.location = '/card-list'
+        // }).fail(function (xhr, status, error){
+        //     alert('Erreur lors de la soumission des données: ' + error)
+        // });
     });
 });

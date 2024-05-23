@@ -7,6 +7,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
 
     private final UserDtoMapper userDtoMapper;
