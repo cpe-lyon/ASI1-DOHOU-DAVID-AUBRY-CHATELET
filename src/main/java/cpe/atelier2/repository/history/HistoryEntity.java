@@ -13,6 +13,7 @@ public class HistoryEntity {
     @Id
     @GeneratedValue
     private Long id;
+    private Long cardId;
     private Long userId;
     private String type;
     private double price;
