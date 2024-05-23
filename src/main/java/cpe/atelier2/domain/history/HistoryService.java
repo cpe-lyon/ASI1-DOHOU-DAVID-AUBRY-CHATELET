@@ -16,8 +16,8 @@ public class HistoryService {
     }
 
     //To be called by market service
-    public void insert(Long userid, String type, double money) {
-        iHistoryRepository.insert(new History(null, userid, type, money));
+    public void insert(Long cardId, Long userid, String type, double money) {
+        iHistoryRepository.insert(new History(null, cardId, userid, type, money));
     }
 
     public List<History> findAll() {
