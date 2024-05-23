@@ -1,11 +1,12 @@
 package cpe.atelier2.repository.card;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import cpe.atelier2.repository.user.UserEntity;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -25,4 +26,6 @@ public class CardEntity {
         private float defence;
         private float attack;
         private float price;
+        @ManyToMany(mappedBy = "cardEntityList")
+        List<UserEntity> userEntityList;
 }
