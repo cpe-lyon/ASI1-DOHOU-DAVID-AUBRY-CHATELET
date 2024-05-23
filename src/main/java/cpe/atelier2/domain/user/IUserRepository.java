@@ -9,5 +9,7 @@ public interface IUserRepository {
 
     Optional<User> findByEmail(String email);
 
+    Optional<User> findByUsername(String username);
+
     String insertUser(User user);
 }
