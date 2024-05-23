@@ -20,8 +20,8 @@ public class AuthenticationController {
 
     @GetMapping("/login")
     public void login(@RequestBody AuthenticationRequestDTO request, HttpServletResponse response) throws IncorrectPasswordException, UserDoesNotExistException {
-        String jwt = authenticationService.authenticate(request.username(), request.password());
-        response.addCookie(new Cookie("token", jwt));
+        Cookie cookie = authenticationService.authenticate(request.username(), request.password());
+        response.addCookie(cookie);
     }
 
     @PostMapping("/check")

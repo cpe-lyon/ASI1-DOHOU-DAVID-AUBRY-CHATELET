@@ -12,4 +12,6 @@ public interface IUserRepository {
     Optional<User> findByUsername(String username);
 
     String insertUser(User user);
+
+    Optional<User> findById(Long id);
 }

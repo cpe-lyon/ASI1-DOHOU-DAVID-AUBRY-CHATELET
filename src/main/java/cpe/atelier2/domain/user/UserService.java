@@ -1,10 +1,9 @@
 package cpe.atelier2.domain.user;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,6 +16,10 @@ public class UserService {
 
     public List<User> findAll(){
         return iUserRepository.findAll();
+    }
+
+    public Optional<User> findUserById(Long id) {
+        return iUserRepository.findById(id);
     }
 
     public String insertUser(User user){

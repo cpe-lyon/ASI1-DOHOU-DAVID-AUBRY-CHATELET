@@ -3,6 +3,8 @@ package cpe.atelier2.controller.user;
 import cpe.atelier2.domain.user.User;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+
 @Component
 public class UserDtoMapper {
 
@@ -11,6 +13,6 @@ public class UserDtoMapper {
     }
 
     public User userFormDtoToUser(UserFormDTO userDTO) {
-        return new User(null, userDTO.email(), userDTO.username(), userDTO.password(), 0.0);
+        return new User(null, userDTO.email(), userDTO.username(), userDTO.password(), 0.0, new ArrayList<>());
     }
 }
