@@ -1,17 +1,14 @@
 package cpe.atelier2.repository.market;
 
 import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import cpe.atelier2.domain.market.MarketSellProposal;
 import cpe.atelier2.domain.user.User;
 import cpe.atelier2.domain.user.UserService;
 import cpe.atelier2.domain.user.exception.UserNotFoundException;
-import cpe.atelier2.repository.user.UserEntity;
 import cpe.atelier2.repository.user.UserEntityMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import java.util.Optional;
 
 @Component
 public class MarketSellProposalMapper {

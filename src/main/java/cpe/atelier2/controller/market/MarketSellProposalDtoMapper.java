@@ -1,11 +1,12 @@
 package cpe.atelier2.controller.market;
 
+import cpe.atelier2.controller.card.CardDtoMapper;
+import cpe.atelier2.controller.user.UserDtoMapper;
 import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import cpe.atelier2.domain.market.MarketSellProposal;
 import cpe.atelier2.domain.user.UserService;
 import cpe.atelier2.domain.user.exception.UserNotFoundException;
-import cpe.atelier2.repository.market.MarketSellProposalEntity;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -13,9 +14,14 @@ public class MarketSellProposalDtoMapper {
 
     UserService userService;
     CardService cardService;
+    UserDtoMapper userDtoMapper;
+    CardDtoMapper cardDtoMapper;
 
-    public MarketSellProposalDtoMapper(UserService userService) {
+    public MarketSellProposalDtoMapper(UserService userService, CardService cardService, UserDtoMapper userDtoMapper, CardDtoMapper cardDtoMapper) {
         this.userService = userService;
+        this.cardService = cardService;
+        this.userDtoMapper = userDtoMapper;
+        this.cardDtoMapper = cardDtoMapper;
     }
 
     public MarketSellProposal mapMarketSellProposalRequestDtoToMarketSellProposal(
@@ -24,7 +30,7 @@ public class MarketSellProposalDtoMapper {
     }
 
     public MarketSellProposalDto mapMarketSellProposalToDto(MarketSellProposal e) {
-        return new MarketSellProposalDto(e.id(), e.card(), e.seller(), e.price());
+        return new MarketSellProposalDto(e.id(), cardDtoMapper.cardToCardDTO(e.card()), userDtoMapper.userToPublicUserDto(e.seller()), e.price());
     }
 
 }

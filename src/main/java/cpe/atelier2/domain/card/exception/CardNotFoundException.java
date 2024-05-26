@@ -1,4 +1,4 @@
-package cpe.atelier2.domain.card.exceptions;
+package cpe.atelier2.domain.card.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

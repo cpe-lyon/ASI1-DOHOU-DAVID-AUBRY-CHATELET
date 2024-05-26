@@ -1,13 +1,11 @@
 package cpe.atelier2.domain.market;
 
-import cpe.atelier2.controller.market.MarketSellProposalDto;
 import cpe.atelier2.domain.card.Card;
 import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import cpe.atelier2.domain.market.exception.MarketSellProposalAlreadyExistsException;
 import cpe.atelier2.domain.market.exception.MarketSellProposalCardNotOwnedException;
 import cpe.atelier2.domain.market.exception.MarketSellProposalNotFoundException;
-import cpe.atelier2.domain.market.exception.MarketSellProposalUserNotFoundException;
 import cpe.atelier2.domain.user.User;
 import cpe.atelier2.domain.user.UserService;
 import cpe.atelier2.domain.user.exception.UserNotFoundException;

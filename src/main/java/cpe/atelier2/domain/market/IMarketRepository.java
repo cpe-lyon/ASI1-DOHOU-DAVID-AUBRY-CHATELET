@@ -1,6 +1,6 @@
 package cpe.atelier2.domain.market;
 
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 
 import java.util.List;
 import java.util.Optional;

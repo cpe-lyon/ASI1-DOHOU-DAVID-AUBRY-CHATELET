@@ -1,6 +1,6 @@
 package cpe.atelier2.domain.card;
 
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 

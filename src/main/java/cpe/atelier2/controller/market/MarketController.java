@@ -2,7 +2,7 @@ package cpe.atelier2.controller.market;
 
 import cpe.atelier2.domain.auth.AuthenticationService;
 import cpe.atelier2.domain.auth.exception.ExpiredTokenException;
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import cpe.atelier2.domain.market.MarketService;
 import cpe.atelier2.domain.market.exception.MarketSellProposalAlreadyExistsException;
 import cpe.atelier2.domain.market.exception.MarketSellProposalCardNotOwnedException;

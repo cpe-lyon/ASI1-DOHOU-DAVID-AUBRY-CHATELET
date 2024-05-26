@@ -1,7 +1,7 @@
 package cpe.atelier2.controller.market;
 
-import cpe.atelier2.domain.user.User;
-import cpe.atelier2.domain.card.Card;
+import cpe.atelier2.controller.card.CardDTO;
+import cpe.atelier2.controller.user.PublicUserDTO;
 
-public record MarketSellProposalDto(Long id, Card card, User seller, double price) {
+public record MarketSellProposalDto(Long id, CardDTO card, PublicUserDTO seller, double price) {
 }

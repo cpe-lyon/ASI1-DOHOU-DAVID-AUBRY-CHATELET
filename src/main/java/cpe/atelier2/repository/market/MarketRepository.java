@@ -1,9 +1,8 @@
 package cpe.atelier2.repository.market;
 
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import cpe.atelier2.domain.market.IMarketRepository;
 import cpe.atelier2.domain.market.MarketSellProposal;
-import lombok.SneakyThrows;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

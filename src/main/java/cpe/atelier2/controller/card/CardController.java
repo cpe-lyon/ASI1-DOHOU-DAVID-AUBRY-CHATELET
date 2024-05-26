@@ -3,7 +3,7 @@ package cpe.atelier2.controller.card;
 
 import cpe.atelier2.domain.card.Card;
 import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
+import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
