@@ -39,7 +39,7 @@
 
         <!-- Centre : Titre de la page -->
         <div style="flex-grow: 2; text-align: center;">
-            <h2 class="ui header">HOME</h2>
+            <h2 class="ui header">CARD</h2>
         </div>
 
         <!-- Droite : User et Sign up icons -->
@@ -61,20 +61,40 @@
         </div>
     </div>
 
-
     <div class="dashboard">
-        <a href="/static/card.html" class="dashboard-button">CARD</a>
-        <a href="/static/cardList-market-buy.html" class="dashboard-button">BUY</a>
-        <a href="/static/cardList-market-sell.html" class="dashboard-button">SELL</a>
-        <a href="/static/play.html" class="dashboard-button">PLAY</a>
-        <a href="/static/account.html" class="dashboard-button">ACCOUNT</a>
-        <a href="/static/messages.html" class="dashboard-button">MESSAGE</a>
+        <a href="/static/searchCard.html" class="dashboard-button">SEARCH</a>
+        <a href="/static/addCard.html" class="dashboard-button">ADD</a>
     </div>
 
+    <div class="ui segment">
+        <div class="ui five column grid" id="gridContainer">
+            <template id="selectedCard">
+                <div class="column">   
+                    <div class="ui special cards">
+                        <div class="card">
+                            <div class="content">
+                                <img class="ui avatar image left aligned" src={{card_small_img}}> {{card_name}}
+                            </div>
+                            <div class="image imageCard">
+                                <div class="blurring dimmable image">
+                                    <img class="ui centered tiny  image" src={{card_img}}>
+                                </div>
+                            </div>
+                            <div class="ui bottom attached button" onclick="showCardDetails('{{card_id}}')">
+                                <i class="eye icon"></i>
+                                Details
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
 
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./lib/Semantic-UI-CSS-master/semantic.js"></script>
     <script src="./js/home.js" defer></script>
+    <script src="./js/card.js" defer></script>
 
 </body>
 
