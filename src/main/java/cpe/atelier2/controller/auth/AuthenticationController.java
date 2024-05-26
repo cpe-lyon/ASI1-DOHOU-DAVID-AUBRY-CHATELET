@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@CrossOrigin("*")
 public class AuthenticationController {
 
     private AuthenticationService authenticationService;
@@ -18,7 +19,7 @@ public class AuthenticationController {
         this.authenticationService = authenticationService;
     }
 
-    @GetMapping("/login")
+    @PostMapping("/login")
     public void login(@RequestBody AuthenticationRequestDTO request, HttpServletResponse response) throws IncorrectPasswordException, UserDoesNotExistException {
         Cookie cookie = authenticationService.authenticate(request.username(), request.password());
         response.addCookie(cookie);

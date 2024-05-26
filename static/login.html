@@ -6,13 +6,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-
     <!-- Site Properties -->
     <title>Grid Example - Semantic</title>
+    <script src="js/navbar.js"></script>
+    <script src="js/login.js"></script>
 
     <link rel="stylesheet" type="text/css" href="./lib/Semantic-UI-CSS-master/semantic.min.css">
     <link rel="stylesheet" type="text/css" href="css/custom.css">
-
 </head>
 
 <body>
@@ -21,24 +21,26 @@
         <div class="column"></div>
         <div class="column"></div>
         <div class="column">
-            <form class="ui form" action="./addData" method="GET" onsubmit="getCard(this.form)">
+            <form onsubmit="login(event, this)">
                 <h3 class="ui dividing header">Login</h3>
                 <div class="field">
                     <label>Username</label>
-                    <input type="text" name="first-name" placeholder="First Name">
+                    <input type="text" name="username" placeholder="Username">
                 </div>
                 <div class="field">
                     <label>Password</label>
-                    <input type="text" name="last-name" placeholder="Last Name">
+                    <input type="password" name="password" placeholder="Password">
                 </div>
                 <button class="ui button" type="submit">Submit</button>
             </form>
-            <a href="/static/signup.html" class="connection-link">
+            <a href="./signup.html" class="connection-link">
                 <p>New ? Create an account here.</p>
             </a>
         </div>
 
     </div>
+
+    <script src="./js/sell.js" defer></script>
 </body>
 
 </html>
