@@ -36,7 +36,7 @@ public class MarketController {
         marketService.sell(mapMarketSellProposalDtoMapper.mapMarketSellProposalRequestDtoToMarketSellProposal(marketSellRequest));
     }
 
-    @GetMapping("/market/all")
+    @GetMapping("/all")
     public List<MarketSellProposalDto> getAllMarketProposals() {
         return marketService.findAllMarketSellProposals().stream()
                 .map(marketSellProposalDtoMapper::mapMarketSellProposalToDto)
