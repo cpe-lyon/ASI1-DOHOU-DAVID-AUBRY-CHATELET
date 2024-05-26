@@ -38,8 +38,20 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
+    public Optional<User> findByUsername(String username) {
+        UserEntity user = userJpaRepository.findByUsername(username);
+        if (user == null) return Optional.empty();
+        return Optional.of(userEntityMapper.userEntityToUser(user));
+    }
+
+    @Override
     public String insertUser(User user){
         userJpaRepository.save(userEntityMapper.userToUserEntity(user));
         return "ok User in base";
+    }
+
+    @Override
+    public Optional<User> findById(Long id) {
+        return userJpaRepository.findById(id).map(userEntityMapper::userEntityToUser);
     }
 }

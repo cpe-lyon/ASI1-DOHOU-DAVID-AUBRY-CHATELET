@@ -40,4 +40,9 @@ public class CardRepository implements ICardRepository {
     public void addNewCard(Card cardToAdd){
         cardJpaRepository.save(cardEntityMapper.cardToCardEntity(cardToAdd));
     }
+
+    @Override
+    public Optional<Card> findById(Long id) {
+        return cardJpaRepository.findById(id).map(cardEntityMapper::cardEntityToCard);
+    }
 }

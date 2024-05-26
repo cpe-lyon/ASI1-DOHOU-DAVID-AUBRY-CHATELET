@@ -8,7 +8,18 @@ public class UserEntityMapper {
 
     public User userEntityToUser(UserEntity userEntity) {
         return new User(userEntity.getId(), userEntity.getEmail(),
-                userEntity.getUsername(), userEntity.getPassword(), userEntity.getMoney());
+                userEntity.getUsername(), userEntity.getPassword(), userEntity.getMoney(), userEntity.getCardEntityList());
+    }
+
+    public UserEntity userToUserEntity(User user){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(null);
+        userEntity.setEmail(user.email());
+        userEntity.setUsername(user.username());
+        userEntity.setMoney(user.money());
+        userEntity.setPassword(user.password());
+
+        return userEntity;
     }
 
     public UserEntity userToUserEntity(User user){

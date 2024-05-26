@@ -13,4 +13,5 @@ public interface ICardRepository {
 
     void addNewCard(Card card);
 
+    Optional<Card> findById(Long id);
 }
