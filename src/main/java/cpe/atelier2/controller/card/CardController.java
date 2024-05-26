@@ -3,6 +3,7 @@ package cpe.atelier2.controller.card;
 
 import cpe.atelier2.domain.card.Card;
 import cpe.atelier2.domain.card.CardService;
+import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -32,5 +33,10 @@ public class CardController {
     @ResponseBody
     public String addNewCard(@RequestBody Card card){
         return cardService.addNewCard(card);
+    }
+
+    @GetMapping("/{id}")
+    public CardDTO findCardById(@PathVariable("id") Long id) throws CardNotFoundException {
+        return cardDtoMapper.cardToCardDTO(cardService.findCardById(id));
     }
 }

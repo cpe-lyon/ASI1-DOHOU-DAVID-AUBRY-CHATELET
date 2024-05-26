@@ -19,5 +19,5 @@ public class MarketSellProposalEntity {
     @JoinColumn(name = "seller_id")
     private UserEntity seller;
 
-    private long price;
+    private double price;
 }

@@ -1,7 +1,6 @@
 package cpe.atelier2.domain.user;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import cpe.atelier2.domain.user.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -20,8 +19,12 @@ public class UserService {
         return iUserRepository.findAll();
     }
 
-    public Optional<User> findUserById(Long id) {
-        return iUserRepository.findById(id);
+    public User findUserById(Long id) throws UserNotFoundException {
+        Optional<User> user = iUserRepository.findById(id);
+        if (user.isEmpty()) {
+            throw new UserNotFoundException();
+        }
+        return user.get();
     }
 
     public String insertUser(User user){

@@ -2,11 +2,14 @@ package cpe.atelier2.controller.market;
 
 import cpe.atelier2.domain.auth.AuthenticationService;
 import cpe.atelier2.domain.auth.exception.ExpiredTokenException;
+import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
 import cpe.atelier2.domain.market.MarketService;
-import cpe.atelier2.domain.market.exception.MarketSellProposalCardNotFoundException;
+import cpe.atelier2.domain.market.exception.MarketSellProposalAlreadyExistsException;
 import cpe.atelier2.domain.market.exception.MarketSellProposalCardNotOwnedException;
-import cpe.atelier2.domain.market.exception.MarketSellProposalUserNotFoundException;
+import cpe.atelier2.domain.user.exception.UserNotFoundException;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/market")
@@ -14,17 +17,29 @@ public class MarketController {
 
     private final AuthenticationService authenticationService;
     private final MarketService marketService;
-    private final MarketSellProposalDtoMapper mapMarketSellProposalRequestDtoMapper;
+    private final MarketSellProposalDtoMapper mapMarketSellProposalDtoMapper;
+    private final MarketSellProposalDtoMapper marketSellProposalDtoMapper;
 
-    public MarketController(AuthenticationService authenticationService, MarketService marketService, MarketSellProposalDtoMapper mapMarketSellProposalRequestDtoMapper) {
+    public MarketController(AuthenticationService authenticationService, MarketService marketService, MarketSellProposalDtoMapper mapMarketSellProposalDtoMapper, MarketSellProposalDtoMapper marketSellProposalDtoMapper) {
         this.authenticationService = authenticationService;
         this.marketService = marketService;
-        this.mapMarketSellProposalRequestDtoMapper = mapMarketSellProposalRequestDtoMapper;
+        this.mapMarketSellProposalDtoMapper = mapMarketSellProposalDtoMapper;
+        this.marketSellProposalDtoMapper = marketSellProposalDtoMapper;
     }
 
     @PostMapping("/sell")
-    public void sell(@CookieValue("token") String token, @RequestBody MarketSellProposalRequestDTO marketSellRequest) throws ExpiredTokenException, MarketSellProposalCardNotFoundException, MarketSellProposalUserNotFoundException, MarketSellProposalCardNotOwnedException {
+    public void sell(@CookieValue("token") String token, @RequestBody MarketSellProposalRequestDTO marketSellRequest) throws ExpiredTokenException,
+            MarketSellProposalCardNotOwnedException,
+            UserNotFoundException,
+            CardNotFoundException, MarketSellProposalAlreadyExistsException {
         authenticationService.checkAuthentication(token);
-        marketService.sell(mapMarketSellProposalRequestDtoMapper.mapMarketSellProposalRequestDtoToMarketSellProposal(marketSellRequest));
+        marketService.sell(mapMarketSellProposalDtoMapper.mapMarketSellProposalRequestDtoToMarketSellProposal(marketSellRequest));
+    }
+
+    @GetMapping("/market/all")
+    public List<MarketSellProposalDto> getAllMarketProposals() {
+        return marketService.findAllMarketSellProposals().stream()
+                .map(marketSellProposalDtoMapper::mapMarketSellProposalToDto)
+                .toList();
     }
 }

@@ -1,5 +1,6 @@
 package cpe.atelier2.domain.card;
 
+import cpe.atelier2.domain.card.exceptions.CardNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
@@ -21,7 +22,13 @@ public class CardService {
         return iCardRepository.findAll();
     }
   
-    public Optional<Card> findCardById(Long id) { return iCardRepository.findById(id); }
+    public Card findCardById(Long id) throws CardNotFoundException {
+        Optional<Card> c = iCardRepository.findById(id);
+        if (c.isEmpty()) {
+            throw new CardNotFoundException();
+        }
+        return c.get();
+    }
   
     public String addNewCard(Card card){
         if (iCardRepository.findByName(card.getName()).isPresent()){ //check existing name
