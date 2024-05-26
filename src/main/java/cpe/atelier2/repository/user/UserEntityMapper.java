@@ -21,4 +21,15 @@ public class UserEntityMapper {
 
         return userEntity;
     }
+
+    public UserEntity userToUserEntity(User user){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(null);
+        userEntity.setEmail(user.email());
+        userEntity.setUsername(user.username());
+        userEntity.setMoney(user.money());
+        userEntity.setPassword(user.password());
+
+        return userEntity;
+    }
 }

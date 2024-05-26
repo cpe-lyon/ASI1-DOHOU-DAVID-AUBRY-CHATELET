@@ -20,9 +20,9 @@ public class CardService {
     public List<Card> getAllCard(){
         return iCardRepository.findAll();
     }
-
+  
     public Optional<Card> findCardById(Long id) { return iCardRepository.findById(id); }
-
+  
     public String addNewCard(Card card){
         if (iCardRepository.findByName(card.getName()).isPresent()){ //check existing name
             return "Card Already existing, abort";

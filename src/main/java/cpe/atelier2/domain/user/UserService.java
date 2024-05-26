@@ -1,5 +1,7 @@
 package cpe.atelier2.domain.user;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

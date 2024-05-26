@@ -1,0 +1,62 @@
+html {
+    font-size: 10px
+}
+
+body {
+    font-size: 10px
+}
+
+.imageCard {
+    height: 100px;
+}
+
+.limitText {
+    text-overflow: ellipsis;
+}
+
+.navbar {
+    height: 100px;
+}
+
+.ui.messageLight {
+    background: #ffffff;
+    padding: 1em 1.5em;
+    line-height: 1.4285em;
+    border-radius: .28571429rem;
+    -webkit-box-shadow: 0 0 0 1px rgba(252, 252, 252, 0.22) inset, 0 0 0 0 transparent;
+    box-shadow: 0 0 0 1px rgba(252, 252, 252, 0.22) inset, 0 0 0 0 transparent;
+}
+
+.overflowHiden {
+    overflow: auto;
+}
+
+.connection-link {
+    text-align: center;
+}
+
+.dashboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 20px;
+}
+
+.dashboard-button {
+    display: block;
+    width: 150px;
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4CAF50;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-button:hover {
+    background-color: #45a049;
+}
