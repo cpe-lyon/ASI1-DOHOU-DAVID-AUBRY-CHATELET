@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card details</title>
+    <script th:src="@{/js/details.js}"></script>
+    <link rel="stylesheet" type="text/css" th:href="@{/js/lib/Semantic-UI-CSS-master/semantic.min.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/custom.css}">
+</head>
+<body>
+<div th:replace="~{fragments/header :: header('search_card')}">
+    <h1> THIS IS A DEFAULT HEADER</h1>
+</div>
+        <div class="ui container">
+            <div class="content">
+                <img class="ui avatar image" th:src="${card.getSmallImgUrl()}" th:text="${card.getFamily()}">
+            </div>
+            <div class="content centered">
+                <h3 th:text="${card.getName()}"></h3>
+            </div>
+            <div class="image imageCard">
+                <div class="blurring dimmable image">
+                    <img class="ui centered tiny image" th:src="${card.getImgUrl()}">
+                </div>
+            </div>
+            <div class="text centered">
+                <blockquote th:text="${card.getDescription()}">
+                </blockquote>
+            </div>
+            <div class="extra content">
+                <div class="content">
+                    <i class="heart outline icon"></i><span id="cardHPId" th:text="${card.getHp()}"></span>
+                    <div class="right floated ">
+                        <i class="lightning outline icon"></i>
+                        <span id="cardEnergyId" th:text="${card.getEnergy()}"></span>
+                    </div>
+                </div>
+                <div class="content">
+                                <span class="right floated">
+                                    <i class=" wizard icon"></i>
+                                    <span id="cardAttackId" th:text="${card.getAttack()}"></span>
+                                </span>
+                    <i class="protect icon"></i>
+                    <span id="cardDefenceId" th:text="${card.getDefence()}"></span>
+                </div>
+            </div>
+            <div class="extra content">
+                <div class="ui centered large transparent centered left icon input">
+                    <i class="heart outline icon"></i>
+                    <input type="text" placeholder="Add Comment...">
+                </div>
+            </div>
+        </div>
+<div id="cardDetails"></div>
+</body>
+</html>
