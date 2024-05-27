@@ -17,6 +17,7 @@ function loadMarketCards(json) {
 
         newContent= clone.firstElementChild.innerHTML
             .replace(/{{card_name}}/g, el.card.name)
+            .replace(/{{card_id}}/g, el.card.id)
             .replace(/{{card_description}}/g, el.card.description)
             .replace(/{{card_family}}/g, el.card.family)
             .replace(/{{card_affinity}}/g, el.card.affinity)
