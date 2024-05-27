@@ -57,43 +57,42 @@
                 <span>Add</span>
             </a>
         </div>
-        <div class="card-container">
-            <div class="card-item">
-                <template>
-                <div class="card-face card-face-front">
-                    <div class="card-name">
-                        <h4>Card Name</h4>
-                    </div>
-                    <div class="card-image">
-                        <img src="assets/card.png" alt="Card Image">
-                    </div>
-                    <div>
-                        <h5>Card Family</h5>
-                    </div>
-                </div>
-                <div class="card-face card-face-back">
-                    <div class="card-info">
-                        <div class="small-card-image">
-                            <img src="assets/card.png" alt="Small Card Imahe">
+        <div class="card-container" id="gridContainer">
+            <template id="cardTemplate">
+                <div class="card-item">
+                    <div class="card-face card-face-front">
+                        <div class="card-name">
+                            <h4>{{card_name}}</h4>
                         </div>
-                        <div class="info">
-                            <ul>
-                                <li>Affinity: <span>Roll</span></li>
-                                <li>Family: <span>Rock</span></li>
-                                <li>Energie: <span>5</span></li>
-                                <li>HP: <span>15</span></li>
-                                <li>Attack: <span>14</span></li>
-                                <li>Defense: <span>12</span></li>
-                            </ul>
+                        <div class="card-image">
+                            <img src={{card_imgUrl}} alt="Card Image">
+                        </div>
+                        <div>
+                            <h5>{{card_family}}</h5>
                         </div>
                     </div>
-                    <div class="card-description">
-                        <p>Card Description</p>
+                    <div class="card-face card-face-back">
+                        <div class="card-info">
+                            <div class="small-card-image">
+                                <img src={{card_smallImgUrl}} alt="Small Card Imahe">
+                            </div>
+                            <div class="info">
+                                <ul>
+                                    <li>Affinity: <span>{{card_affinity}}</span></li>
+                                    <li>Family: <span>{{card_family}}</span></li>
+                                    <li>Energy: <span>{{card_energy}}</span></li>
+                                    <li>HP: <span>{{card_hp}}</span></li>
+                                    <li>Attack: <span>{{card_attack}}</span></li>
+                                    <li>Defence: <span>{{card_defence}}</span></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="card-description">
+                            <p>{{card_description}}</p>
+                        </div>
                     </div>
                 </div>
-                </template>
-            </div>
-
+            </template>
         </div>
 
         <div id="myModal" class="modal">
@@ -102,37 +101,37 @@
                     <h2>Add Card</h2>
                     <span class="close">&times;</span>
                 </div>
-                <form class="login-form modal-form">
+                <form class="login-form modal-form add-card-form">
 
                     <label for="cardName">Card Name:</label>
-                    <input type="text" id="cardName" name="cardName" placeholder="Card Name" required>
+                    <input type="text" id="cardName" name="card-name" placeholder="Card Name" required>
 
                     <label>Description:</label>
                     <input type="text" name="card-description" placeholder="Card Description" required>
 
+                    <label for="cardFamily">Family:</label>
+                    <input type="text" id="cardFamily" name="card-family" placeholder="Card Family" required>
+
                     <label for="cardAffinity">Affinity:</label>
-                    <input type="text" id="cardAffinity" name="cardAffinity" placeholder="Card Affinity" required>
+                    <input type="text" id="cardAffinity" name="card-affinity" placeholder="Card Affinity" required>
 
                     <label>Image URL:</label>
-                    <input type="file" name="card-imageurl" placeholder="Image URL">
+                    <input type="text" name="card-imgUrl" placeholder="Image URL">
 
                     <label>Samll Image URL:</label>
-                    <input type="file" name="card-smallimageurl" placeholder="Small Image URL">
-
-                    <label>ID:</label>
-                    <input type="number" name="card-id" placeholder="ID">
+                    <input type="text" name="card-smallImgUrl" placeholder="Small Image URL">
 
                     <label for="cardEnergy">Energy:</label>
-                    <input type="number" id="cardEnergy" name="cardEnergy" required>
+                    <input type="number" id="cardEnergy" name="card-energy" required>
 
                     <label for="cardHP">HP:</label>
-                    <input type="number" id="cardHP" name="cardHP" required>
+                    <input type="number" id="cardHP" name="card-hp" required>
 
                     <label for="cardAttack">Attack:</label>
-                    <input type="number" id="cardAttack" name="cardAttack" required>
+                    <input type="number" id="cardAttack" name="card-attack" required>
 
                     <label for="cardDefense">Defense:</label>
-                    <input type="number" id="cardDefense" name="cardDefense" required>
+                    <input type="number" id="cardDefense" name="card-defence" required>
 
                     <div class="button-group">
                         <button type="reset">Reset</button>
@@ -142,7 +141,9 @@
             </div>
         </div>
 
+        <script src="./lib/jquery-3.3.1.min.js"></script>
         <script src="./js/card.js" defer></script>
+        <script src="./js/addCard.js" defer></script>
         <script src="./js/script.js" defer></script>
 </body>
 

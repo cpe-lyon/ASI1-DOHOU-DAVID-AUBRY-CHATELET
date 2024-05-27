@@ -1,20 +1,22 @@
-let cards = fetch("http://localhost:8090/card/all").then(value => {
-    if (! value.ok) {
-        alert(`Erreur lors de la récupération des cartes : ${value.status}`)
-        return
-    }
-    value.json().then(json => loadCards(json))
-})
+function getCards() {
+    let cards = fetch("http://localhost:8090/card/all").then(value => {
+        if (! value.ok) {
+            alert(`Erreur lors de la récupération des cartes : ${value.status}`)
+            return
+        }
+        value.json().then(json => loadCards(json))
+    })
+}
 
-// function getCardById(id){
-//     let card = fetch("http://localhost:8090/card/"+id).then(value => {
-//         if (! value.ok) {
-//             alert(`Erreur lors de la récupération de la carte : ${value.status}`)
-//             return
-//         }
-//         value.json().then(json => loadCards(json))
-//     })
-// }
+function getCardById(id){
+    let card = fetch("http://localhost:8090/card/"+id).then(value => {
+        if (! value.ok) {
+            alert(`Erreur lors de la récupération de la carte : ${value.status}`)
+            return
+        }
+        value.json().then(json => loadCards(json))
+    })
+}
 
 function loadCards(json) {
     let template = document.querySelector("#cardTemplate")
@@ -51,3 +53,7 @@ function loadCards(json) {
 // function showCardDetails(id) {
 //     location.href = `./details.html?id=${id}`
 // }
+
+$(document).ready(function() {
+    getCards()
+})

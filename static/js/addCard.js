@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    $('.ui.form').submit(function(event) {
+    $('.add-card-form').submit(function(event) {
         event.preventDefault()
 
         let formData = {}
@@ -28,7 +28,7 @@ $(document).ready(function() {
             data: JSON.stringify(formData),
             success: function(response) {
                 alert('Données soumises avec succès.')
-                window.location = './card-list'
+                window.location = './card'
             },
             error: function(xhr, status, error) {
                 alert('Erreur lors de la soumission des données: ' + error)
