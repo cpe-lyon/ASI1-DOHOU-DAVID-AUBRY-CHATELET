@@ -62,7 +62,7 @@
                 <div class="card-item">
                     <div class="card-face card-face-front">
                         <div class="card-name">
-                            <h4>{{card_name}}</h4>
+                            <h4 style="text-decoration: underline;">{{card_name}}</h4>
                         </div>
                         <div class="card-image">
                             <img src={{card_imgUrl}} alt="Card Image">
@@ -70,7 +70,7 @@
                         <div>
                             <h5>{{card_family}}</h5>
                         </div>
-                    </div>
+                        </div>
                     <div class="card-face card-face-back">
                         <div class="card-info">
                             <div class="small-card-image">
@@ -86,6 +86,9 @@
                                     <li>Defence: <span>{{card_defence}}</span></li>
                                 </ul>
                             </div>
+                        </div>
+                        <div style="display: flex; justify-content: flex-start;width: 100%">
+                            <p style="margin-left: 10px;">Description:</p>
                         </div>
                         <div class="card-description">
                             <p>{{card_description}}</p>

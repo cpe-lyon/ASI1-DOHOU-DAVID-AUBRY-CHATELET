@@ -252,27 +252,33 @@ a {
 .card-item {
     margin: 20px;
     padding: 20px;
-    width: 15%;
-    height: 300px;
+    width: 20%;
+    height: 340px;
     border-radius: 10px;
     position: relative;
     perspective: 1000px;
+    min-width: 170px;
 }
 
 .card-image img {
-    width: 220px;
+    width: 90%;
     height: auto;
+}
+
+.card-image {
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .small-card-image {
     width: 40%;
+    padding: 10px;
 }
 
 .small-card-image img {
     width: 100%;
     height: auto;
-    margin-top: 10px;
-    margin-left: 10px;
 }
 
 .card-face {
@@ -306,7 +312,7 @@ a {
 .card-face-back {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: center;
     background-color: rgb(203, 203, 203);
     transform: rotateY(180deg);
@@ -326,20 +332,36 @@ a {
     display: flex;
     flex-direction: row;
     align-items: flex-start;
-    justify-content: space-between;
+    justify-content: flex-start;
+    height: 50%;
 }
 
 .info ul {
     list-style: none;
 }
 
+.info ul li {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 .info {
-    margin-top: 10px;
-    margin-right: 10px;
+    padding-top: 10px;
+    width: 60%;
+    padding-right: 10px;
 }
 
 .card-description {
     margin: 10px;
+    max-height: 50%;
+    overflow: scroll;
+    width: calc(100% - 20px);
+    border-style: solid;
+    border-radius: 5px;
 }
 
 .table-wrapper {
