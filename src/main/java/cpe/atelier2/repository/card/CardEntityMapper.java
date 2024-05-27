@@ -15,7 +15,7 @@ public class CardEntityMapper {
 
     public CardEntity cardToCardEntity(Card card){
         CardEntity cardEntity = new CardEntity();
-        cardEntity.setId(null);
+        cardEntity.setId(card.getId());
         cardEntity.setName(card.getName());
         cardEntity.setHp(card.getHp());
         cardEntity.setAffinity(card.getAffinity());
