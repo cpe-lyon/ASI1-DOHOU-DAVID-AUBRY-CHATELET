@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sell</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h4>Card App</h4>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="/home.html">Home</a>
+            </li>
+            <li>
+                <a href="/card.html">Card</a>
+            </li>
+            <li>
+                <a class="active-link" href="/market.html">Market</a>
+            </li>
+            <li>
+                <a href="/play.html">Play</a>
+            </li>
+            <li>
+                <a href="/message.html">Message</a>
+            </li>
+
+
+        </ul>
+        <a href="/login.html">
+            <div class="user">
+
+                <div>
+                    <img src="assets/user.png" class="user-icon" alt="user-icon">
+                </div>
+                <div class="user-info">
+                    <h4>John Doe</h4>
+                    <p>199$</p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <div class="content top-row">
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Family</th>
+                        <th>Affinity</th>
+                        <th>Energy</th>
+                        <th>HP</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="table-body">
+                    <!-- Data will be dynamically inserted here -->
+                </tbody>
+            </table>
+        </div>
+        <div class="card-panel">
+            <img src="assets/card-image.png" alt="Card Image" class="card-image">
+            <div class="card-details">
+                <p><strong>Name:</strong> Super John</p>
+                <p><strong>HP:</strong> 50</p>
+                <p><strong>Price:</strong> $50</p>
+            </div>
+            <button class="sell-button">SELL</button>
+        </div>
+    </div>
+    <script src="./js/sell.js" defer></script>
+</body>
+
+</html>
