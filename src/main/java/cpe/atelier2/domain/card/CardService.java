@@ -4,8 +4,11 @@ import cpe.atelier2.domain.card.exception.CardNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -37,6 +40,20 @@ public class CardService {
 
         iCardRepository.addNewCard(card);
         return "ok, card inserted";
+    }
+
+    public List<Card> getRandomStarterCards(int n) {
+        List<Card> cards = new ArrayList<>(getAllCard());
+
+        Collections.shuffle(cards);
+
+        List<Card> result = new ArrayList<>();
+
+        for (int i = 0; i < n; i++) {
+            result.add(cards.get(i));
+        }
+
+        return result;
     }
 
 }

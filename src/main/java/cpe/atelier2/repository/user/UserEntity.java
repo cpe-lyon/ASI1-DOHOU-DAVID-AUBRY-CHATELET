@@ -5,6 +5,8 @@ import cpe.atelier2.repository.market.MarketSellProposalEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
 
 import java.util.List;
 
@@ -26,7 +28,7 @@ public class UserEntity {
     private String password;
     private double money;
 
-    @ManyToMany
+    @ManyToMany(cascade = jakarta.persistence.CascadeType.MERGE)
     @JoinTable(
             name = "user_card",
             joinColumns = @JoinColumn(name = "app_user_id"),
@@ -34,11 +36,6 @@ public class UserEntity {
     )
     List<CardEntity> cardEntityList;
 
-    @ManyToMany
-    @JoinTable(
-            name = "user_marketsellproposals",
-            joinColumns = @JoinColumn(name = "app_user_id"),
-            inverseJoinColumns = @JoinColumn(name = "marketsellproposal_id")
-    )
+    @OneToMany
     List<MarketSellProposalEntity> marketSellProposals;
 }
