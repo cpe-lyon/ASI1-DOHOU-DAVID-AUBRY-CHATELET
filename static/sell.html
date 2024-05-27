@@ -61,7 +61,17 @@
                     </tr>
                 </thead>
                 <tbody id="table-body">
-                    <!-- Data will be dynamically inserted here -->
+                    <template id="bodyTemplate">
+                        <tr>
+                            <td>{{card_name}}</td>
+                            <td>{{card_description}}</td>
+                            <td>{{card_family}}</td>
+                            <td>{{card_affinity}}</td>
+                            <td>{{card_energy}}</td>
+                            <td>{{card_hp}}</td>
+                            <td>{{card_price}}</td>
+                        </tr>
+                    </template>
                 </tbody>
             </table>
         </div>
@@ -75,6 +85,8 @@
             <button class="sell-button">SELL</button>
         </div>
     </div>
+
+    <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./js/sell.js" defer></script>
 </body>
 
