@@ -11,9 +11,12 @@ function login(event, form) {
         contentType: 'application/json',
         data: JSON.stringify({ "username" : username, "password": password }),
         crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        },
         success: function(output, status, xhr) {
             console.log('Login successful:')
-            // window.location = './home'
+            window.location = './home'
         },
         error: function(xhr, status, error) {
             switch (xhr.status) {
