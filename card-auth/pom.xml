@@ -10,7 +10,6 @@
     <groupId>cpe.atelier3</groupId>
     <artifactId>auth</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <packaging>pom</packaging>
     <name>card-auth</name>
     <description>Gestion utilisateurs</description>
     <properties>
