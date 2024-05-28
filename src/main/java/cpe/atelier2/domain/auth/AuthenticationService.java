@@ -6,16 +6,13 @@ import cpe.atelier2.domain.auth.exception.UserDoesNotExistException;
 import cpe.atelier2.domain.auth.jwt.JWTGenerator;
 import cpe.atelier2.domain.user.User;
 import cpe.atelier2.repository.user.UserRepository;
-import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.Optional;
 
 import static cpe.atelier2.domain.auth.jwt.JWTGenerator.JWT_KEY;
