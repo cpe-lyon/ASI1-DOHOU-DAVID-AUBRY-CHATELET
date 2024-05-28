@@ -43,6 +43,6 @@ public class UserDtoMapper {
     }
 
     public PublicUserDTO userToPublicUserDto(User user) {
-        return new PublicUserDTO(user.id(), user.username());
+        return new PublicUserDTO(user.id(), user.username(), user.cardList());
     }
 }
