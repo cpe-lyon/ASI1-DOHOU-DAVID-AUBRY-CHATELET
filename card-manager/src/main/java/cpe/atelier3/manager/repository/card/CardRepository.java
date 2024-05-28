@@ -1,7 +1,10 @@
 package cpe.atelier3.manager.repository.card;
 
-import cpe.atelier2.domain.card.Card;
-import cpe.atelier2.domain.card.ICardRepository;
+
+import cpe.atelier3.commons.card.Card;
+import cpe.atelier3.commons.card.entity.CardEntity;
+import cpe.atelier3.commons.card.entity.CardEntityMapper;
+import cpe.atelier3.manager.domain.card.ICardRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

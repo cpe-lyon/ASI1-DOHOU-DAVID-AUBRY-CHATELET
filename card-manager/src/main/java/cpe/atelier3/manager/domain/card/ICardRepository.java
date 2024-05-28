@@ -1,6 +1,7 @@
 package cpe.atelier3.manager.domain.card;
 
-import cpe.atelier2.repository.card.CardEntity;
+
+import cpe.atelier3.commons.card.Card;
 
 import java.util.List;
 import java.util.Optional;

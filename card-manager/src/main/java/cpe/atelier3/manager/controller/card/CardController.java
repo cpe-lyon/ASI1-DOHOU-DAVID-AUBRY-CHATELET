@@ -1,9 +1,11 @@
 package cpe.atelier3.manager.controller.card;
 
 
-import cpe.atelier2.domain.card.Card;
-import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exception.CardNotFoundException;
+import cpe.atelier3.manager.domain.card.CardService;
+import cpe.atelier3.commons.card.Card;
+import cpe.atelier3.commons.card.dto.CardDTO;
+import cpe.atelier3.commons.card.dto.CardDtoMapper;
+import cpe.atelier3.commons.card.exception.CardNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
