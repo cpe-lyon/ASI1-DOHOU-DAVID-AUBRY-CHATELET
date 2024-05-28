@@ -57,10 +57,65 @@ function loadMarketCards(json) {
                 <p><strong>HP:</strong> ${hp}</p>
                 <button class="sell-button">SELL</button>
             `
+
+            var modal = document.getElementById("myModal")
+            var btn = document.querySelector(".sell-button")
+            var span = document.getElementsByClassName("close")[0]
+
+            btn.onclick = function() {
+                modal.style.display = "block"
+                document.getElementById("cardId").innerHTML = "Value = " + "'" + id + "'"
+            }
+            span.onclick = function() {
+                modal.style.display = "none"
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none"
+                }
+            }
         })
     })
 }
 
 $(document).ready(function() {
     getMarketCards()
+
+    $('.sell-card-form').submit(function(event) {
+        event.preventDefault()
+
+        let formData = {}
+        let isFormValid = true
+
+        $(this).find('input').each(function() {
+            const name = $(this).attr('name').replace('card-', '')
+            const value = $(this).val().trim()
+
+            if (value === '') {
+                alert('Veuillez remplir tous les champs.')
+                isFormValid = false
+                return false
+            }
+            formData[name] = $(this).attr('type') === 'number' ? parseInt(value, 10) : value
+        })
+
+        if (!isFormValid) {
+            return
+        }
+
+        $.ajax({
+            url: 'http://localhost:8090/card/add',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(formData),
+            success: function(response) {
+                alert('Données soumises avec succès.')
+                window.location = './card'
+            },
+            error: function(xhr, status, error) {
+                alert('Erreur lors de la soumission des données: ' + error)
+            }
+        })
+    })
 })
