@@ -1,5 +1,5 @@
-function getMarketCards() {
-    let cards = fetch("http://localhost:8090/card/all").then(value => {
+function getMarketCards(user_id) {
+    let cards = fetch("http://localhost:8090/user/"+user_id).then(value => {
         if (! value.ok) {
             alert(`Erreur lors de la récupération des cartes : ${value.status}`)
             return
@@ -11,7 +11,7 @@ function getMarketCards() {
 function loadMarketCards(json) {
     let template = document.querySelector("#bodyTemplate")
 
-    for(const card of json){
+    for(const card of json["cardsOfUser"]){
         console.log(card)
         let clone = document.importNode(template.content, true)
 
@@ -42,7 +42,7 @@ function loadMarketCards(json) {
             let affinity = this.querySelector('td:nth-child(5)').textContent
             let energy = this.querySelector('td:nth-child(6)').textContent
             let hp = this.querySelector('td:nth-child(7)').textContent
-            let imgUrl = json.find(card => card.name === name).imgUrl
+            let imgUrl = json["cardsOfUser"].find(card => card.name === name).imgUrl
 
             // Mettre à jour le contenu de la card-panel
             document.querySelector('.card-panel .card-image').src = imgUrl
@@ -79,8 +79,36 @@ function loadMarketCards(json) {
     })
 }
 
+function parseJwt (token) {
+    var base64Url = token.split('.')[1]
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''))
+
+    return JSON.parse(jsonPayload)
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for(let i = 0; i <ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 $(document).ready(function() {
-    getMarketCards()
+    const user_id = parseJwt(getCookie("token"))["user_id"]
+
+    getMarketCards(user_id)
 
     $('.sell-card-form').submit(function(event) {
         event.preventDefault()
