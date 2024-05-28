@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public PublicUserDTO findUserById(@PathVariable("id") Long id) throws UserNotFoundException {
+    public PublicUserDTO findUserById(@PathVariable("id") long id) throws UserNotFoundException {
         return userDtoMapper.userToPublicUserDto(userService.findUserById(id));
     }
 }
