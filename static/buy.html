@@ -51,6 +51,7 @@
             <table>
                 <thead>
                     <tr>
+                        <th>ID</th>
                         <th>Name</th>
                         <th>Description</th>
                         <th>Family</th>
@@ -62,7 +63,8 @@
                 </thead>
                 <tbody id="table-body">
                     <template id="bodyTemplate">
-                        <tr id="card-{{card_id}}">
+                        <tr>
+                            <td>{{card_id}}</td>
                             <td>{{card_name}}</td>
                             <td>{{card_description}}</td>
                             <td>{{card_family}}</td>
@@ -76,13 +78,10 @@
             </table>
         </div>
         <div class="card-panel">
-            <img src="assets/card-image.png" alt="Card Image" class="card-image">
+            <img src="" alt="Card Image" class="card-image" style="visibility: hidden">
             <div class="card-details">
-                <p><strong>Name:</strong> Super John</p>
-                <p><strong>HP:</strong> 50</p>
-                <p><strong>Price:</strong> $50</p>
+                <p><strong>Please choose a card to see details</strong></p>
             </div>
-            <button class="sell-button">BUY</button>
         </div>
     </div>
 
