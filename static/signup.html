@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
+    <title>Sign up</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
 </head>
@@ -21,11 +21,11 @@
         <h2>Sign Up</h2>
         <form onsubmit="login(event, this)" class="login-form">
             <label>Username</label>
-            <input type="text" name="username" placeholder="Username" required>
+            <input type="text" name="user-username" placeholder="Username" required>
             <label>Mail</label>
-            <input type="text" name="last-name" placeholder="E-mail">
+            <input type="text" name="user-email" placeholder="E-mail">
             <label>Password</label>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="password" name="user-password" placeholder="Password" required>
             <div class="button-group">
                 <button type="reset">Reset</button>
                 <button type="submit">Submit</button>
@@ -36,6 +36,9 @@
             <a href="./login.html">Already sign up? Connect here.</a>
         </div>
     </div>
+
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="./js/signup.js" defer></script>
 </body>
 
 </html>
