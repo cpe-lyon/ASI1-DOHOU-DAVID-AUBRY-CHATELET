@@ -4,6 +4,7 @@ import cpe.atelier3.auth.domain.auth.exception.ExpiredTokenException;
 import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
 import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
 import cpe.atelier3.auth.domain.auth.jwt.JWTGenerator;
+import cpe.atelier3.auth.domain.user.IUserRepository;
 import cpe.atelier3.commons.user.User;
 import cpe.atelier3.auth.repository.user.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
@@ -23,16 +24,16 @@ public class AuthenticationService {
     private final HttpSession httpSession;
     private JWTGenerator jwtGenerator;
 
-    private UserRepository userRepository;
+    private IUserRepository iuserRepository;
 
-    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, UserRepository userRepository, HttpSession httpSession) {
+    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, IUserRepository iuserRepository, HttpSession httpSession) {
         this.jwtGenerator = jwtGenerator;
-        this.userRepository = userRepository;
+        this.iuserRepository = iuserRepository;
         this.httpSession = httpSession;
     }
 
     public Cookie authenticate(String username, String password) throws UserDoesNotExistException, IncorrectPasswordException {
-        Optional<User> user = userRepository.findByUsername(username);
+        Optional<User> user = iuserRepository.findByUsername(username);
 
         if (user.isEmpty()) {
             throw new UserDoesNotExistException();
