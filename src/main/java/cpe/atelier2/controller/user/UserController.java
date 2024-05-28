@@ -1,6 +1,7 @@
 package cpe.atelier2.controller.user;
 
 import cpe.atelier2.domain.user.UserService;
+import cpe.atelier2.domain.user.exception.UserNotFoundException;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -30,5 +31,10 @@ public class UserController {
     @ResponseBody
     public String insertUser(@RequestBody UserFormDTO userData){
         return userService.insertUser(userDtoMapper.userFormDtoToUser(userData));
+    }
+
+    @GetMapping("/{id}")
+    public PublicUserDTO findUserById(@PathVariable("id") Long id) throws UserNotFoundException {
+        return userDtoMapper.userToPublicUserDto(userService.findUserById(id));
     }
 }
