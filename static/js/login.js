@@ -10,9 +10,10 @@ function login(event, form) {
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify({ "username" : username, "password": password }),
-        success: function(response) {
-            console.log('Login successful:', response)
-            window.location = './home'
+        crossDomain: true,
+        success: function(output, status, xhr) {
+            console.log('Login successful:')
+            // window.location = './home'
         },
         error: function(xhr, status, error) {
             switch (xhr.status) {
