@@ -6,7 +6,9 @@ import cpe.atelier2.domain.auth.exception.UserDoesNotExistException;
 import cpe.atelier2.domain.auth.jwt.JWTGenerator;
 import cpe.atelier2.domain.user.User;
 import cpe.atelier2.repository.user.UserRepository;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpSession;
@@ -20,15 +22,13 @@ import static cpe.atelier2.domain.auth.jwt.JWTGenerator.TTL;
 
 @Service
 public class AuthenticationService {
-    private final HttpSession httpSession;
-    private JWTGenerator jwtGenerator;
+    private final JWTGenerator jwtGenerator;
 
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, UserRepository userRepository, HttpSession httpSession) {
         this.jwtGenerator = jwtGenerator;
         this.userRepository = userRepository;
-        this.httpSession = httpSession;
     }
 
     public Cookie authenticate(String username, String password) throws UserDoesNotExistException, IncorrectPasswordException {
@@ -46,12 +46,13 @@ public class AuthenticationService {
         return c;
     }
 
-    public void checkAuthentication(String token) throws ExpiredTokenException {
+    public String checkAuthentication(String token) throws ExpiredTokenException {
         try {
-            Jwts.parser()
+            Jws<Claims> jwt = Jwts.parser()
                     .verifyWith(JWT_KEY)
                     .build()
                     .parseSignedClaims(token);
+            return jwt.getPayload().get("user_id").toString();
         } catch (ExpiredJwtException e) {
             throw new ExpiredTokenException();
         }

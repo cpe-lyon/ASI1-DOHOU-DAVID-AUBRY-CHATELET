@@ -45,4 +45,8 @@ public class UserDtoMapper {
     public PublicUserDTO userToPublicUserDto(User user) {
         return new PublicUserDTO(user.id(), user.username(), user.cardList());
     }
+
+    public PrivateUserDTO userToPrivateUserDto(User user) {
+        return new PrivateUserDTO(user.id(), user.username(), user.cardList(), user.money());
+    }
 }
