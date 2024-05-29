@@ -1,9 +1,9 @@
 package cpe.atelier3.auth.controller.auth;
 
 import cpe.atelier3.auth.domain.auth.AuthenticationService;
-import cpe.atelier3.auth.domain.auth.exception.ExpiredTokenException;
-import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
-import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
+import cpe.atelier3.commons.auth.exception.ExpiredTokenException;
+import cpe.atelier3.commons.auth.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.auth.exception.UserDoesNotExistException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;

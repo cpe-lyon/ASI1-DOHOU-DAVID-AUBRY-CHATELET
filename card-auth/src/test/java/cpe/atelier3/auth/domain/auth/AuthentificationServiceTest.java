@@ -1,12 +1,11 @@
 package cpe.atelier3.auth.domain.auth;
 
-import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
-import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
+import cpe.atelier3.commons.auth.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.auth.exception.UserDoesNotExistException;
 import cpe.atelier3.auth.domain.auth.jwt.JWTGenerator;
 import cpe.atelier3.auth.domain.user.IUserRepository;
 import cpe.atelier3.commons.card.Card;
 import cpe.atelier3.commons.user.User;
-import cpe.atelier3.commons.user.exception.UserNotFoundException;
 import jakarta.servlet.http.Cookie;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -21,7 +20,6 @@ import java.util.Optional;
 
 import static cpe.atelier3.auth.domain.auth.jwt.JWTGenerator.TTL;
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)

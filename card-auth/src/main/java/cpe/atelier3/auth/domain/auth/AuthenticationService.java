@@ -1,12 +1,11 @@
 package cpe.atelier3.auth.domain.auth;
 
-import cpe.atelier3.auth.domain.auth.exception.ExpiredTokenException;
-import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
-import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
+import cpe.atelier3.commons.auth.exception.ExpiredTokenException;
+import cpe.atelier3.commons.auth.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.auth.exception.UserDoesNotExistException;
 import cpe.atelier3.auth.domain.auth.jwt.JWTGenerator;
 import cpe.atelier3.auth.domain.user.IUserRepository;
 import cpe.atelier3.commons.user.User;
-import cpe.atelier3.auth.repository.user.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
