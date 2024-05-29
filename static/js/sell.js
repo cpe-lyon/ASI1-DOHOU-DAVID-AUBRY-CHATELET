@@ -66,7 +66,7 @@ function loadMarketCards(json) {
 
             btn.onclick = function() {
                 modal.style.display = "block"
-                document.getElementById("cardId").innerHTML = "Value = " + "'" + id + "'"
+                $("#cardId").val(id)
             }
             span.onclick = function() {
                 modal.style.display = "none"
@@ -122,6 +122,8 @@ $(document).ready(function() {
             const name = $(this).attr('name').replace('card-', '')
             const value = $(this).val().trim()
 
+            console.log(name + "  " + value)
+
             if (value === '') {
                 alert('Veuillez remplir tous les champs.')
                 isFormValid = false
@@ -135,10 +137,12 @@ $(document).ready(function() {
         }
 
         $.ajax({
-            url: 'http://localhost:8090/card/add',
+            url: 'http://localhost:8090/market/sell',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify(formData),
+            data: JSON.stringify({ "cardToSellId" : formData["id"], "sellerId": user_id, "price":  formData["price"]}),
+            xhrFields: {withCredentials: true},
+            crossDomain: true,
             success: function(response) {
                 alert('Données soumises avec succès.')
                 window.location = './card'

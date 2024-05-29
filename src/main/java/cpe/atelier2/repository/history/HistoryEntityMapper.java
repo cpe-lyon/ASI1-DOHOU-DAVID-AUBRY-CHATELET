@@ -13,7 +13,7 @@ public class HistoryEntityMapper {
 
     public HistoryEntity historyToHistoryEntity(History history) {
         HistoryEntity historyEntity = new HistoryEntity();
-        historyEntity.setId(null);
+        historyEntity.setId(history.id());
         historyEntity.setType(history.type());
         historyEntity.setPrice(history.price());
         historyEntity.setUserId(history.userId());

@@ -3,6 +3,8 @@ package cpe.atelier2.domain.card;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Card {
@@ -32,5 +34,18 @@ public class Card {
         this.defence = defence;
         this.attack = attack;
         this.price = price;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Card card = (Card) o;
+        return Objects.equals(id, card.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

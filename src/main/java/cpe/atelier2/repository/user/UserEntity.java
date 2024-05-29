@@ -38,4 +38,6 @@ public class UserEntity {
 
     @OneToMany
     List<MarketSellProposalEntity> marketSellProposals;
+
+
 }
