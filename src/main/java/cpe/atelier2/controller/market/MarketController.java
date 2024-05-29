@@ -28,6 +28,7 @@ public class MarketController {
     }
 
     @PostMapping("/sell")
+    @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
     public void sell(@CookieValue("token") String token, @RequestBody MarketSellProposalRequestDTO marketSellRequest) throws ExpiredTokenException,
             MarketSellProposalCardNotOwnedException,
             UserNotFoundException,

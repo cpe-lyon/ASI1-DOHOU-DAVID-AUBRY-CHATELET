@@ -50,10 +50,6 @@ function loadCards(json) {
     });
 }
 
-// function showCardDetails(id) {
-//     location.href = `./details.html?id=${id}`
-// }
-
 $(document).ready(function() {
     getCards()
 })

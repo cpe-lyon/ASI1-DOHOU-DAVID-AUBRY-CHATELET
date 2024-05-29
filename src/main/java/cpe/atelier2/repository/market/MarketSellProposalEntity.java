@@ -4,6 +4,7 @@ import cpe.atelier2.repository.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 @Getter
 @Setter
@@ -15,8 +16,7 @@ public class MarketSellProposalEntity {
 
     private Long cardId;
 
-    @ManyToOne
-    @JoinColumn(name = "seller_id")
+    @ManyToOne(cascade = CascadeType.MERGE)
     private UserEntity seller;
 
     private double price;

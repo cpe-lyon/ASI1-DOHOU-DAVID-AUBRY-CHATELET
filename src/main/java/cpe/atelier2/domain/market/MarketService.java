@@ -32,8 +32,7 @@ public class MarketService {
     public void sell(MarketSellProposal marketSellProposal) throws MarketSellProposalCardNotOwnedException, CardNotFoundException, UserNotFoundException, MarketSellProposalAlreadyExistsException {
         User seller = userService.findUserById(marketSellProposal.seller().id());
         Card card = cardService.findCardById(marketSellProposal.card().getId());
-
-        if (seller.cardList().isEmpty() || ! seller.cardList().contains(cardEntityMapper.cardToCardEntity(card))) {
+        if (seller.cardList().isEmpty() || ! seller.cardList().contains(card)) {
             throw new MarketSellProposalCardNotOwnedException();
         }
 

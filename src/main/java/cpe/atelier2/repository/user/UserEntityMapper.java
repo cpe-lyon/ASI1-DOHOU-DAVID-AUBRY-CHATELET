@@ -23,7 +23,7 @@ public class UserEntityMapper {
 
     public UserEntity userToUserEntity(User user){
         UserEntity userEntity = new UserEntity();
-        userEntity.setId(null);
+        userEntity.setId(user.id());
         userEntity.setEmail(user.email());
         userEntity.setEmail(user.email());
         userEntity.setUsername(user.username());
