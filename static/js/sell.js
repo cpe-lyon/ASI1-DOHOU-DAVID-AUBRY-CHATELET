@@ -69,7 +69,6 @@ function loadMarketCards(json) {
                 const modalTitle = document.querySelector('#myModal .modal-content h2');
                 modalTitle.textContent = `At what price do you want to sell the card ${cardName}?`;
                 modal.style.display = "block"
-                $("#cardId").val(id)
             }
             span.onclick = function() {
                 modal.style.display = "none"
@@ -118,14 +117,22 @@ $(document).ready(function() {
     $('.sell-card-form').submit(function(event) {
         event.preventDefault()
 
+        let truc = document.querySelector('.card-panel .card-details')
+        let tamer = truc.querySelectorAll('p')
+        let card_id = null;
+        tamer.forEach(p => {
+            const strongElement = p.querySelector('strong');
+            if (strongElement && strongElement.textContent.includes('ID:')) {
+                card_id = p.textContent.replace('ID:', '').trim();
+            }
+        });
+
         let formData = {}
         let isFormValid = true
 
         $(this).find('input').each(function() {
             const name = $(this).attr('name').replace('card-', '')
             const value = $(this).val().trim()
-
-            console.log(name + "  " + value)
 
             if (value === '') {
                 alert('Veuillez remplir tous les champs.')
