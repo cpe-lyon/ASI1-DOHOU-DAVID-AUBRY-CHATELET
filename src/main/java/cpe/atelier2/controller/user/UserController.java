@@ -10,7 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/user")
-@CrossOrigin("*")
+
 public class UserController {
 
     private final UserDtoMapper userDtoMapper;
@@ -42,7 +42,9 @@ public class UserController {
         return userDtoMapper.userToPublicUserDto(userService.findUserById(id));
     }
 
+
     @GetMapping("/private")
+    @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
     public PrivateUserDTO findPrivateUserDataById(@CookieValue("token") String token) throws UserNotFoundException, ExpiredTokenException {
         String uid = authenticationService.checkAuthentication(token);
         return userDtoMapper.userToPrivateUserDto(userService.findUserById(Long.valueOf(uid)));

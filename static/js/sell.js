@@ -1,5 +1,7 @@
-function getMarketCards(user_id) {
-    let cards = fetch("http://localhost:8090/user/"+user_id).then(value => {
+function getMarketCards() {
+    let cards = fetch("http://localhost:8090/user/private", {
+        credentials: "include",
+    }).then(value => {
         if (! value.ok) {
             alert(`Erreur lors de la récupération des cartes : ${value.status}`)
             return
@@ -108,7 +110,7 @@ function getCookie(cname) {
 $(document).ready(function() {
     const user_id = parseJwt(getCookie("token"))["user_id"]
 
-    getMarketCards(user_id)
+    getMarketCards()
 
     $('.sell-card-form').submit(function(event) {
         event.preventDefault()
