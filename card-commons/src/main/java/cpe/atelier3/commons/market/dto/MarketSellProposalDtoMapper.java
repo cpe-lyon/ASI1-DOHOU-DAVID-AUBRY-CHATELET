@@ -1,7 +1,6 @@
 package cpe.atelier3.commons.market.dto;
 
 
-import cpe.atelier3.commons.api.exception.ApiNokException;
 import cpe.atelier3.commons.api.card.CardApi;
 import cpe.atelier3.commons.api.exception.ApiURIException;
 import cpe.atelier3.commons.api.user.UserApi;

@@ -1,7 +1,9 @@
 package cpe.atelier3.market.repository.history;
 
-import cpe.atelier2.domain.history.History;
-import cpe.atelier2.domain.history.IHistoryRepository;
+import cpe.atelier3.commons.market.History;
+import cpe.atelier3.commons.market.entity.HistoryEntity;
+import cpe.atelier3.commons.market.entity.HistoryEntityMapper;
+import cpe.atelier3.market.domain.history.IHistoryRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

@@ -1,39 +1,41 @@
 package cpe.atelier3.market.domain.market;
 
-import cpe.atelier2.domain.card.Card;
-import cpe.atelier2.domain.card.CardService;
-import cpe.atelier2.domain.card.exception.CardNotFoundException;
-import cpe.atelier2.domain.market.exception.MarketSellProposalAlreadyExistsException;
-import cpe.atelier2.domain.market.exception.MarketSellProposalCardNotOwnedException;
-import cpe.atelier2.domain.market.exception.MarketSellProposalNotFoundException;
-import cpe.atelier2.domain.user.User;
-import cpe.atelier2.domain.user.UserService;
-import cpe.atelier2.domain.user.exception.UserNotFoundException;
-import cpe.atelier2.repository.card.CardEntityMapper;
+import cpe.atelier3.commons.api.card.CardApi;
+import cpe.atelier3.commons.api.exception.ApiURIException;
+import cpe.atelier3.commons.api.user.UserApi;
+import cpe.atelier3.commons.card.Card;
+import cpe.atelier3.commons.card.exception.CardNotFoundException;
+import cpe.atelier3.commons.market.MarketSellProposal;
+import cpe.atelier3.commons.market.exception.MarketSellProposalAlreadyExistsException;
+import cpe.atelier3.commons.market.exception.MarketSellProposalCardNotOwnedException;
+import cpe.atelier3.commons.market.exception.MarketSellProposalNotFoundException;
+import cpe.atelier3.commons.user.User;
+import cpe.atelier3.commons.user.exception.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class MarketService {
-    private final CardService cardService;
-    private final CardEntityMapper cardEntityMapper;
-    UserService userService;
+    private final CardApi cardService;
+    UserApi userService;
     IMarketRepository iMarketRepository;
 
-    public MarketService(UserService userService, CardService cardService, CardEntityMapper cardEntityMapper, IMarketRepository iMarketRepository) {
+    public MarketService(UserApi userService, CardApi cardService, IMarketRepository iMarketRepository) {
         this.userService = userService;
         this.cardService = cardService;
-        this.cardEntityMapper = cardEntityMapper;
         this.iMarketRepository = iMarketRepository;
     }
 
-    public void sell(MarketSellProposal marketSellProposal) throws MarketSellProposalCardNotOwnedException, CardNotFoundException, UserNotFoundException, MarketSellProposalAlreadyExistsException {
+    public void sell(MarketSellProposal marketSellProposal) throws MarketSellProposalCardNotOwnedException, CardNotFoundException,
+            UserNotFoundException, MarketSellProposalAlreadyExistsException,
+            ApiURIException, URISyntaxException {
         User seller = userService.findUserById(marketSellProposal.seller().id());
         Card card = cardService.findCardById(marketSellProposal.card().getId());
 
-        if (seller.cardList().isEmpty() || ! seller.cardList().contains(cardEntityMapper.cardToCardEntity(card))) {
+        if (seller.cardList().isEmpty() || ! seller.cardList().contains(card)) {
             throw new MarketSellProposalCardNotOwnedException();
         }
 

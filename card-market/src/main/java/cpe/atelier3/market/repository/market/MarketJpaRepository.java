@@ -1,5 +1,6 @@
 package cpe.atelier3.market.repository.market;
 
+import cpe.atelier3.commons.market.entity.MarketSellProposalEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;

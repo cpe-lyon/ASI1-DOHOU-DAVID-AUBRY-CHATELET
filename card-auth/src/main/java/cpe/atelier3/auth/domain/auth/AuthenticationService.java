@@ -1,8 +1,8 @@
 package cpe.atelier3.auth.domain.auth;
 
-import cpe.atelier3.auth.domain.auth.exception.ExpiredTokenException;
-import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
-import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
+import cpe.atelier3.commons.user.exception.InvalidTokenException;
+import cpe.atelier3.commons.user.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.user.exception.UserDoesNotExistException;
 import cpe.atelier3.auth.domain.auth.jwt.JWTGenerator;
 import cpe.atelier3.commons.user.User;
 import cpe.atelier3.auth.repository.user.UserRepository;
@@ -46,14 +46,14 @@ public class AuthenticationService {
         return c;
     }
 
-    public void checkAuthentication(String token) throws ExpiredTokenException {
+    public void checkAuthentication(String token) throws InvalidTokenException {
         try {
             Jwts.parser()
                     .verifyWith(JWT_KEY)
                     .build()
                     .parseSignedClaims(token);
         } catch (ExpiredJwtException e) {
-            throw new ExpiredTokenException();
+            throw new InvalidTokenException();
         }
     }
 }

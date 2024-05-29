@@ -1,9 +1,9 @@
 package cpe.atelier3.auth.controller.auth;
 
 import cpe.atelier3.auth.domain.auth.AuthenticationService;
-import cpe.atelier3.auth.domain.auth.exception.ExpiredTokenException;
-import cpe.atelier3.auth.domain.auth.exception.IncorrectPasswordException;
-import cpe.atelier3.auth.domain.auth.exception.UserDoesNotExistException;
+import cpe.atelier3.commons.user.exception.InvalidTokenException;
+import cpe.atelier3.commons.user.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.user.exception.UserDoesNotExistException;
 import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.bind.annotation.*;
@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin("*")
 public class AuthenticationController {
 
-    private AuthenticationService authenticationService;
+    private final AuthenticationService authenticationService;
 
     public AuthenticationController(AuthenticationService authenticationService) {
         this.authenticationService = authenticationService;
@@ -26,7 +26,7 @@ public class AuthenticationController {
     }
 
     @PostMapping("/check")
-    public void check(@CookieValue("token") String token) throws ExpiredTokenException {
+    public void check(@CookieValue("token") String token) throws InvalidTokenException {
         authenticationService.checkAuthentication(token);
     }
 }
