@@ -83,6 +83,24 @@
                 <p><strong>Please choose a card to see details</strong></p>
             </div>
         </div>
+
+        <div id="myModal" class="modal" style="display: none">
+            <div class="modal-content">
+                <div style="display: flex;justify-content: space-between;">
+                    <h2>At what price do you want to sell the card {{card_name}}({{card_id}}) ?</h2>
+                    <span class="close">&times;</span>
+                </div>
+                <form class="sell-form modal-form sell-card-form">
+                    <input type="number" id="cardId" name="card-id" style="visibility: hidden">
+                    <input type="number" id="cardPrice" name="card-price" required>
+
+                    <div class="button-group">
+                        <button type="button">No</button>
+                        <button type="submit">Yes</button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </div>
 
     <script src="./lib/jquery-3.3.1.min.js"></script>

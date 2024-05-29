@@ -66,7 +66,6 @@ function loadMarketCards(json) {
 
             btn.onclick = function() {
                 modal.style.display = "block"
-                $("#cardId").val(id)
             }
             span.onclick = function() {
                 modal.style.display = "none"
@@ -115,14 +114,22 @@ $(document).ready(function() {
     $('.sell-card-form').submit(function(event) {
         event.preventDefault()
 
+        let truc = document.querySelector('.card-panel .card-details')
+        let tamer = truc.querySelectorAll('p')
+        let card_id = null;
+        tamer.forEach(p => {
+            const strongElement = p.querySelector('strong');
+            if (strongElement && strongElement.textContent.includes('ID:')) {
+                card_id = p.textContent.replace('ID:', '').trim();
+            }
+        });
+
         let formData = {}
         let isFormValid = true
 
         $(this).find('input').each(function() {
             const name = $(this).attr('name').replace('card-', '')
             const value = $(this).val().trim()
-
-            console.log(name + "  " + value)
 
             if (value === '') {
                 alert('Veuillez remplir tous les champs.')
@@ -140,7 +147,7 @@ $(document).ready(function() {
             url: 'http://localhost:8090/market/sell',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ "cardToSellId" : formData["id"], "sellerId": user_id, "price":  formData["price"]}),
+            data: JSON.stringify({ "cardToSellId" : card_id, "sellerId": user_id, "price":  formData["price"]}),
             xhrFields: {withCredentials: true},
             crossDomain: true,
             success: function(response) {

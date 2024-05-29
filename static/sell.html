@@ -85,15 +85,13 @@
         <div id="myModal" class="modal" style="display: none">
             <div class="modal-content">
                 <div style="display: flex;justify-content: space-between;">
-                    <h2>At what price do you want to sell the card {{card_name}}({{card_id}}) ?</h2>
+                    <h2 id="modal-title">At what price do you want to sell the card ?</h2>
                     <span class="close">&times;</span>
                 </div>
                 <form class="sell-form modal-form sell-card-form">
-                    <input type="number" id="cardId" name="card-id" style="visibility: hidden">
                     <input type="number" id="cardPrice" name="card-price" required>
 
                     <div class="button-group">
-                        <button type="reset">Reset</button>
                         <button type="submit">Submit</button>
                     </div>
                 </form>
