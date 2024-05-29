@@ -22,7 +22,6 @@ public class CardControllerIT extends ManagerApplicationIT {
     @Test
     public void findAllShouldReturnAllCardInBase() {
 
-        // TODO : REST TEMPLATE
         //given
         List expectedList = List.of(
                 new CardDTO(1L, "Métamorph", "Un Pokemon tout mignon",
