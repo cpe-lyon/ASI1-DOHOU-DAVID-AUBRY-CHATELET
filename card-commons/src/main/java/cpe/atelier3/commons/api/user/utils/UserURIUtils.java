@@ -1,12 +1,20 @@
 package cpe.atelier3.commons.api.user.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Component;
+
 import java.net.URI;
 import java.net.URISyntaxException;
 
+@Component
 public class UserURIUtils {
-    private static final String API_URL = System.getenv("USER_API_URL");
+    @Autowired
+    DiscoveryClient discoveryClient;
 
-    public static URI findUserById(Long id) throws URISyntaxException {
-        return new URI(API_URL + "/user/" + id.toString());
+    public URI findUserById(Long id) {
+        return discoveryClient.getInstances("card-auth").get(0)
+                .getUri()
+                .resolve("/users/" + id.toString());
     }
 }

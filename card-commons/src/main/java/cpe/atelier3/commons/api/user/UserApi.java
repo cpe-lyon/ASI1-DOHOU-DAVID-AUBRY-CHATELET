@@ -7,30 +7,27 @@ import cpe.atelier3.commons.api.exception.ApiURIException;
 import cpe.atelier3.commons.api.user.utils.UserURIUtils;
 import cpe.atelier3.commons.user.User;
 import cpe.atelier3.commons.user.exception.UserNotFoundException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 import java.net.http.HttpResponse;
-import java.util.List;
 
 @Component
 public class UserApi {
 
     public static final String API_NAME = "CardAPI";
 
-    public User findUserById(Long id) throws ApiURIException, UserNotFoundException {
+    @Autowired
+    UserURIUtils userURIUtils;
+
+    public User findUserById(Long id) throws UserNotFoundException {
         Gson gson = new Gson();
-        List<User> cards;
-        HttpRequest request = null;
-        try {
-            request = HttpRequest.newBuilder()
-                    .uri(UserURIUtils.findUserById(id))
-                    .GET()
-                    .build();
-        } catch (URISyntaxException e) {
-            throw new ApiURIException();
-        }
+        HttpRequest request;
+        request = HttpRequest.newBuilder()
+            .uri(userURIUtils.findUserById(id))
+            .GET()
+            .build();
 
 
         HttpResponse<String> response = null;
@@ -42,6 +39,7 @@ public class UserApi {
             }
         }
 
+        assert response != null;
         return gson.fromJson(response.body(), User.class);
     }
 }

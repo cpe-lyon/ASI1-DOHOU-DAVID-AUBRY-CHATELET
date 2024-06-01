@@ -7,6 +7,7 @@ import cpe.atelier3.commons.api.card.utils.CardURIUtils;
 import cpe.atelier3.commons.card.Card;
 import cpe.atelier3.commons.card.exception.CardNotFoundException;
 import cpe.atelier3.commons.user.User;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.net.URISyntaxException;
@@ -19,11 +20,14 @@ public class CardApi {
 
     private static final String API_NAME = "CardAPI";
 
+    @Autowired
+    CardURIUtils cardURIUtils;
+
     public List<Card> getRandomStarterCards(int i) throws URISyntaxException, ApiNokException {
         Gson gson = new Gson();
         List<Card> cards;
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(CardURIUtils.getAllCardsURI())
+                .uri(cardURIUtils.getAllCardsURI())
                 .GET()
                 .build();
         HttpResponse<String> response = ApiUtils.sendRequestToApi(request, API_NAME, "get all cards");
@@ -37,7 +41,7 @@ public class CardApi {
         Card card;
 
         HttpRequest request = HttpRequest.newBuilder()
-                .uri(CardURIUtils.findCardById(id))
+                .uri(cardURIUtils.findCardById(id))
                 .GET()
                 .build();
 
@@ -50,6 +54,7 @@ public class CardApi {
             }
         }
 
+        assert response != null;
         return gson.fromJson(response.body(), Card.class);
     }
 }

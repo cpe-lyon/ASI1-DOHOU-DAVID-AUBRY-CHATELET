@@ -1,16 +1,21 @@
 package cpe.atelier3.commons.api.card.utils;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.stereotype.Component;
+
 import java.net.URI;
-import java.net.URISyntaxException;
 
+@Component
 public class CardURIUtils {
-    private static final String API_URL = System.getenv("CARD_API_URL");
+    @Autowired
+    private DiscoveryClient discoveryClient;
 
-    public static URI getAllCardsURI() throws URISyntaxException {
-        return new URI(API_URL + "/card/all");
+    public URI getAllCardsURI() {
+        return discoveryClient.getInstances("card-manager").get(0).getUri().resolve("/card/all");
     }
 
-    public static URI findCardById(Long id) throws URISyntaxException {
-        return new URI(API_URL + "/card/" + id.toString());
+    public URI findCardById(Long id) {
+        return discoveryClient.getInstances("card-manager").get(0).getUri().resolve("/card/" + id.toString());
     }
 }
