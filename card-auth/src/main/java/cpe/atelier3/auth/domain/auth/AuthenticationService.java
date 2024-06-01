@@ -9,7 +9,7 @@ import cpe.atelier3.auth.repository.user.UserRepository;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
-import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -20,15 +20,14 @@ import static cpe.atelier3.auth.domain.auth.jwt.JWTGenerator.TTL;
 
 @Service
 public class AuthenticationService {
-    private final HttpSession httpSession;
-    private JWTGenerator jwtGenerator;
 
-    private UserRepository userRepository;
+    private final JWTGenerator jwtGenerator;
 
-    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, UserRepository userRepository, HttpSession httpSession) {
+    private final UserRepository userRepository;
+
+    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, @Autowired UserRepository userRepository) {
         this.jwtGenerator = jwtGenerator;
         this.userRepository = userRepository;
-        this.httpSession = httpSession;
     }
 
     public Cookie authenticate(String username, String password) throws UserDoesNotExistException, IncorrectPasswordException {
