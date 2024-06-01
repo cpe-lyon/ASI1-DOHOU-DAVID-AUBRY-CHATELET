@@ -1,5 +1,6 @@
 package cpe.atelier3.auth.domain.auth;
 
+import cpe.atelier3.auth.domain.user.IUserRepository;
 import cpe.atelier3.commons.user.exception.InvalidTokenException;
 import cpe.atelier3.commons.user.exception.IncorrectPasswordException;
 import cpe.atelier3.commons.user.exception.UserDoesNotExistException;
@@ -23,9 +24,9 @@ public class AuthenticationService {
 
     private final JWTGenerator jwtGenerator;
 
-    private final UserRepository userRepository;
+    private final IUserRepository userRepository;
 
-    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, @Autowired UserRepository userRepository) {
+    public AuthenticationService(@Qualifier("default") JWTGenerator jwtGenerator, @Autowired IUserRepository userRepository) {
         this.jwtGenerator = jwtGenerator;
         this.userRepository = userRepository;
     }
