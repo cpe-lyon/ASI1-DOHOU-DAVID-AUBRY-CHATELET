@@ -15,6 +15,12 @@ public class UserURIUtils {
     public URI findUserById(Long id) {
         return discoveryClient.getInstances("card-auth").get(0)
                 .getUri()
-                .resolve("/users/" + id.toString());
+                .resolve("/user/" + id.toString());
+    }
+
+    public URI privateUserInfo() {
+        return discoveryClient.getInstances("card-auth").get(0)
+                .getUri()
+                .resolve("/user/private");
     }
 }

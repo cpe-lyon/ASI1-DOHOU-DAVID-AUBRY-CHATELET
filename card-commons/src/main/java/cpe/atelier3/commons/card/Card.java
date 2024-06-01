@@ -3,6 +3,8 @@ package cpe.atelier3.commons.card;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Objects;
+
 @Getter
 @Setter
 public class Card {
@@ -32,5 +34,20 @@ public class Card {
         this.defence = defence;
         this.attack = attack;
         this.price = price;
+    }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Card card)) return false;
+
+        return Float.compare(getEnergy(), card.getEnergy()) == 0 && Float.compare(getHp(), card.getHp()) == 0 && Float.compare(getDefence(), card.getDefence()) == 0 && Float.compare(getAttack(), card.getAttack()) == 0 && getId().equals(card.getId()) && getName().equals(card.getName()) && Objects.equals(getFamily(), card.getFamily());
+    }
+
+    @Override
+    public int hashCode() {
+        int result = getId().hashCode();
+        result = 31 * result + getName().hashCode();
+        return result;
     }
 }

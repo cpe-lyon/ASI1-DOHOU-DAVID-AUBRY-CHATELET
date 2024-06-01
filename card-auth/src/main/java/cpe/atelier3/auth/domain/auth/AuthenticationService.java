@@ -46,12 +46,14 @@ public class AuthenticationService {
         return c;
     }
 
-    public void checkAuthentication(String token) throws InvalidTokenException {
+    public String checkAuthentication(String token) throws InvalidTokenException {
         try {
-            Jwts.parser()
+            return Jwts.parser()
                     .verifyWith(JWT_KEY)
                     .build()
-                    .parseSignedClaims(token);
+                    .parseSignedClaims(token)
+                    .getPayload()
+                    .get("user_id").toString();
         } catch (ExpiredJwtException e) {
             throw new InvalidTokenException();
         }

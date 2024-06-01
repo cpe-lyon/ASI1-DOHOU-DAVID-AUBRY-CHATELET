@@ -8,6 +8,7 @@ import cpe.atelier3.commons.market.MarketSellProposal;
 import cpe.atelier3.commons.user.User;
 import cpe.atelier3.commons.user.entity.UserEntityMapper;
 import cpe.atelier3.commons.user.exception.UserNotFoundException;
+import jakarta.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -15,24 +16,20 @@ import java.net.URISyntaxException;
 
 @Component
 public class MarketSellProposalMapper {
-    private final UserApi userService;
     private final CardApi cardService;
     private UserEntityMapper userEntityMapper;
 
-    public MarketSellProposalMapper(@Autowired UserEntityMapper userEntityMapper, UserApi userService, CardApi cardService) {
+    public MarketSellProposalMapper(@Autowired UserEntityMapper userEntityMapper, CardApi cardService) {
         this.userEntityMapper = userEntityMapper;
-        this.userService = userService;
         this.cardService = cardService;
     }
 
-    public MarketSellProposalEntity mapMarketSellProposalToEntity(MarketSellProposal proposal) throws UserNotFoundException, ApiURIException {
+    public MarketSellProposalEntity mapMarketSellProposalToEntity(MarketSellProposal proposal) throws UserNotFoundException {
         MarketSellProposalEntity e = new MarketSellProposalEntity();
         e.setId(proposal.id());
         e.setPrice(proposal.price());
         e.setCardId(proposal.card().getId());
-        User ue = userService.findUserById(proposal.seller().id());
-
-        e.setSeller(userEntityMapper.userToUserEntity(ue));
+        e.setSeller(userEntityMapper.userToUserEntity(proposal.seller()));
 
         return e;
     }

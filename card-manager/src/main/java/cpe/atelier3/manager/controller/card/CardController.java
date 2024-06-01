@@ -12,7 +12,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/card")
-@CrossOrigin("*")
 public class CardController {
 
     private final CardDtoMapper cardDtoMapper;

@@ -50,10 +50,10 @@ public class MarketRepository implements IMarketRepository {
 
     @Override
     public MarketSellProposal createNewMarketSellProposal(MarketSellProposal marketSellProposal) throws CardNotFoundException {
-        MarketSellProposalEntity entity = null;
+        MarketSellProposalEntity entity;
         try {
             entity = marketSellProposalMapper.mapMarketSellProposalToEntity(marketSellProposal);
-        } catch (UserNotFoundException | ApiURIException e) {
+        } catch (UserNotFoundException e) {
             throw new RuntimeException(e);
         }
         try {

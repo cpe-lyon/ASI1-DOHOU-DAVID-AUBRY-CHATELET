@@ -1,7 +1,6 @@
 package cpe.atelier3.market.domain.market;
 
 import cpe.atelier3.commons.api.card.CardApi;
-import cpe.atelier3.commons.api.exception.ApiURIException;
 import cpe.atelier3.commons.api.user.UserApi;
 import cpe.atelier3.commons.card.Card;
 import cpe.atelier3.commons.card.exception.CardNotFoundException;
@@ -30,10 +29,9 @@ public class MarketService {
     }
 
     public void sell(MarketSellProposal marketSellProposal) throws MarketSellProposalCardNotOwnedException, CardNotFoundException,
-            UserNotFoundException, MarketSellProposalAlreadyExistsException,
-            ApiURIException, URISyntaxException {
-        User seller = userService.findUserById(marketSellProposal.seller().id());
-        Card card = cardService.findCardById(marketSellProposal.card().getId());
+            MarketSellProposalAlreadyExistsException {
+        User seller = marketSellProposal.seller();
+        Card card = marketSellProposal.card();
 
         if (seller.cardList().isEmpty() || ! seller.cardList().contains(card)) {
             throw new MarketSellProposalCardNotOwnedException();

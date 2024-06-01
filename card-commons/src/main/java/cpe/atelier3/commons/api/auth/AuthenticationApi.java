@@ -2,10 +2,12 @@ package cpe.atelier3.commons.api.auth;
 
 import cpe.atelier3.commons.api.ApiUtils;
 import cpe.atelier3.commons.api.auth.utils.AuthApiCookieUtils;
+import cpe.atelier3.commons.api.auth.utils.AuthJWTUtils;
 import cpe.atelier3.commons.api.exception.ApiNokException;
 import cpe.atelier3.commons.user.exception.InvalidTokenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.discovery.DiscoveryClient;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Component;
 
@@ -14,16 +16,17 @@ import java.net.URISyntaxException;
 import java.net.http.HttpRequest;
 
 @Component
+@EnableDiscoveryClient
 public class AuthenticationApi {
 
     @Autowired
     private DiscoveryClient discoveryClient;
 
-    public void checkAuthentication(String token) throws InvalidTokenException, URISyntaxException {
+    public String checkAuthentication(String token) throws InvalidTokenException, URISyntaxException {
         String authUrl = discoveryClient.getInstances("card-auth").get(0).getUri().toString();
 
         HttpRequest.Builder builder = HttpRequest.newBuilder();
-        builder.uri(new URI(authUrl));
+        builder.uri(new URI(authUrl).resolve("/auth/check"));
         builder.POST(HttpRequest.BodyPublishers.noBody());
         builder.setHeader("Cookie", AuthApiCookieUtils.formatToken(token));
         HttpRequest request = builder.build();
@@ -36,5 +39,6 @@ public class AuthenticationApi {
             }
             throw new RuntimeException(e);
         }
+        return AuthJWTUtils.extractUIDFromToken(token);
     }
 }

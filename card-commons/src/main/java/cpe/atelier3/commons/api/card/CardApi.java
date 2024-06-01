@@ -5,6 +5,8 @@ import cpe.atelier3.commons.api.exception.ApiNokException;
 import cpe.atelier3.commons.api.ApiUtils;
 import cpe.atelier3.commons.api.card.utils.CardURIUtils;
 import cpe.atelier3.commons.card.Card;
+import cpe.atelier3.commons.card.dto.CardDTO;
+import cpe.atelier3.commons.card.dto.CardDtoMapper;
 import cpe.atelier3.commons.card.exception.CardNotFoundException;
 import cpe.atelier3.commons.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,6 +24,9 @@ public class CardApi {
 
     @Autowired
     CardURIUtils cardURIUtils;
+
+    @Autowired
+    CardDtoMapper cardDtoMapper;
 
     public List<Card> getRandomStarterCards(int i) throws URISyntaxException, ApiNokException {
         Gson gson = new Gson();
@@ -55,6 +60,6 @@ public class CardApi {
         }
 
         assert response != null;
-        return gson.fromJson(response.body(), Card.class);
+        return cardDtoMapper.cardDtoToCard(gson.fromJson(response.body(), CardDTO.class));
     }
 }
