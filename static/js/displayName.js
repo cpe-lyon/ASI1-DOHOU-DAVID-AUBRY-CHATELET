@@ -45,10 +45,20 @@ $(document).ready(function() {
     const user = token ? parseJwt(token) : null;
 
     if (user && user.user_id) {
-        $('#username').text(user.sub || 'John Doe'); // Affiche le nom d'utilisateur
-        $('#userwallet').text(user.wallet + '$'); // Affiche les informations de portefeuille
-        $('#user-link').attr("href", "#"); // Neutralise le lien si connecté
-        $('#logout-tooltip').show(); // Affiche l'icône de déconnexion
+        fetch("http://localhost:8000/user/private", {
+            credentials: "include",
+        }).then(value => {
+            if (!value.ok) {
+                alert(`Erreur lors de la récupération des cartes : ${value.status}`)
+                return
+            }
+            value.json().then(json => {
+                $('#username').text(user.sub || 'John Doe'); // Affiche le nom d'utilisateur
+                $('#userwallet').text(json.money + '$'); // Affiche les informations de portefeuille
+                $('#user-link').attr("href", "#"); // Neutralise le lien si connecté
+                $('#logout-tooltip').show(); // Affiche l'icône de déconnexion
+            })
+        })
     } else {
         $('#username').text('Login / Sign Up');
         $('#userwallet').hide(); // Masque les informations de portefeuille
