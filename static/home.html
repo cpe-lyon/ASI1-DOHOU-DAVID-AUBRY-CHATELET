@@ -32,17 +32,24 @@
             </li>
 
         </ul>
-        <a href="/login.html">
-            <div class="user">
-                <div>
-                    <img src="assets/user.png" class="user-icon" alt="user-icon">
+        <div style="display: flex; flex-direction: row;">
+            <a href="/login.html" id="user-link">
+                <div class="user">
+
+                    <div>
+                        <img src="assets/user.png" class="user-icon" alt="user-icon">
+                    </div>
+                    <div class="user-info">
+                        <h4 id="username">Login / Sign Up</h4>
+                        <p id="userwallet">199$</p>
+                    </div>
                 </div>
-                <div class="user-info">
-                    <h4>John Doe</h4>
-                    <p>199$</p>
-                </div>
-            </div>
-        </a>
+            </a>
+
+            <a id="logout-tooltip" style="display: none;">
+                <img src="assets/logout.svg" class="user-icon" alt="Logout Icon">
+            </a>
+        </div>
     </div>
     <div class="content">
         <div class="dashboard">
@@ -64,6 +71,9 @@
             </a>
         </div>
     </div>
+
+    <script src="./lib/jquery-3.3.1.min.js"></script>
+    <script src="./js/displayName.js"></script>
 </body>
 
 </html>

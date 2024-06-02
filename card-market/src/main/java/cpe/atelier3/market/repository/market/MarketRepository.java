@@ -71,6 +71,11 @@ public class MarketRepository implements IMarketRepository {
                 .toList();
     }
 
+    @Override
+    public void removeMarketSellProposal(MarketSellProposal marketSellProposal) throws UserNotFoundException {
+        marketJpaRepository.delete(marketSellProposalMapper.mapMarketSellProposalToEntity(marketSellProposal));
+    }
+
     private MarketSellProposal mapEntityToMarketSellProposal(MarketSellProposalEntity marketSellProposalEntity) {
         try {
             return marketSellProposalMapper.mapEntityToMarketSellProposal(marketSellProposalEntity);

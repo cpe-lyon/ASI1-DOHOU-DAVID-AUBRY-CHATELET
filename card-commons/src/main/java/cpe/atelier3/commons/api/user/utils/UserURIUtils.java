@@ -23,4 +23,22 @@ public class UserURIUtils {
                 .getUri()
                 .resolve("/user/private");
     }
+
+    public URI paymentToUser() {
+        return discoveryClient.getInstances("card-auth").get(0)
+                .getUri()
+                .resolve("/user/private/payment");
+    }
+
+    public URI cardOfUserManipulation(Long uid, Long cid) {
+        return discoveryClient.getInstances("card-auth").get(0)
+                .getUri()
+                .resolve("/user/" + uid.toString() + "/card/" + cid.toString());
+    }
+
+    public URI getCardOfUser(Long uid, Long cid) {
+        return discoveryClient.getInstances("card-auth").get(0)
+                .getUri()
+                .resolve("/user/" + uid.toString() + "/card/" + cid.toString());
+    }
 }

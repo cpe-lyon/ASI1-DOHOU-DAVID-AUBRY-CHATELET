@@ -1,5 +1,10 @@
 package cpe.atelier3.commons.api.exception;
 
+import lombok.Getter;
+import org.springframework.web.bind.annotation.ResponseStatus;
+
+@Getter
+@ResponseStatus()
 public class ApiNokException extends Exception {
 
     private int errorCode;
@@ -8,7 +13,4 @@ public class ApiNokException extends Exception {
         this.errorCode = errorCode;
     }
 
-    public int getErrorCode() {
-        return this.errorCode;
-    }
 }

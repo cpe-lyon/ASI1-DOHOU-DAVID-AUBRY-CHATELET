@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
 </head>
 
@@ -33,18 +34,24 @@
 
 
         </ul>
-        <a href="/login.html">
-            <div class="user">
+        <div style="display: flex; flex-direction: row;">
+            <a href="/login.html" id="user-link">
+                <div class="user">
 
-                <div>
-                    <img src="assets/user.png" class="user-icon" alt="user-icon">
+                    <div>
+                        <img src="assets/user.png" class="user-icon" alt="user-icon">
+                    </div>
+                    <div class="user-info">
+                        <h4 id="username">Login / Sign Up</h4>
+                        <p id="userwallet">199$</p>
+                    </div>
                 </div>
-                <div class="user-info">
-                    <h4>John Doe</h4>
-                    <p>199$</p>
-                </div>
-            </div>
-        </a>
+            </a>
+
+            <a id="logout-tooltip" style="display: none;">
+                <img src="assets/logout.svg" class="user-icon" alt="Logout Icon">
+            </a>
+        </div>
     </div>
     <div class="content top-row">
         <div class="table-wrapper">
@@ -85,11 +92,11 @@
         <div id="myModal" class="modal" style="display: none">
             <div class="modal-content">
                 <div style="display: flex;justify-content: space-between;">
-                    <h2 id="modal-title">At what price do you want to sell the card ?</h2>
+                    <h2>At what price do you want to sell the card {{card_name}} ?</h2>
                     <span class="close">&times;</span>
                 </div>
-                <form class="sell-form modal-form sell-card-form">
-                    <input type="number" id="cardPrice" name="card-price" required>
+                <form class="sell-form modal-form sell-card-form login-form">
+                    <input type="number" id="cardPrice" name="card-price" required placeholder="Price">
 
                     <div class="button-group">
                         <button type="submit">Submit</button>
@@ -102,6 +109,8 @@
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./js/checkAuth.js" defer></script>
     <script src="./js/sell.js" defer></script>
+    <script src="./js/script.js" defer></script>
+    <script src="./js/displayName.js" defer></script>
 </body>
 
 </html>
