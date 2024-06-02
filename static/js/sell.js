@@ -2,7 +2,7 @@ function getMarketCards() {
     let cards = fetch("http://localhost:8090/user/private", {
         credentials: "include",
     }).then(value => {
-        if (! value.ok) {
+        if (!value.ok) {
             alert(`Erreur lors de la récupération des cartes : ${value.status}`)
             return
         }
@@ -13,11 +13,11 @@ function getMarketCards() {
 function loadMarketCards(json) {
     let template = document.querySelector("#bodyTemplate")
 
-    for(const card of json["cardsOfUser"]){
+    for (const card of json["cardsOfUser"]) {
         console.log(card)
         let clone = document.importNode(template.content, true)
 
-        newContent= clone.firstElementChild.innerHTML
+        newContent = clone.firstElementChild.innerHTML
             .replace(/{{card_name}}/g, card.name)
             .replace(/{{card_id}}/g, card.id)
             .replace(/{{card_description}}/g, card.description)
@@ -29,9 +29,9 @@ function loadMarketCards(json) {
             .replace(/{{card_hp}}/g, card.hp)
             .replace(/{{card_defence}}/g, card.defence)
             .replace(/{{card_attack}}/g, card.attack)
-        clone.firstElementChild.innerHTML= newContent
+        clone.firstElementChild.innerHTML = newContent
 
-        let cardContainer= document.querySelector("#table-body")
+        let cardContainer = document.querySelector("#table-body")
         cardContainer.appendChild(clone)
     }
 
@@ -57,14 +57,17 @@ function loadMarketCards(json) {
                 <p><strong>Affinity:</strong> ${affinity}</p>
                 <p><strong>Energy:</strong> ${energy}</p>
                 <p><strong>HP:</strong> ${hp}</p>
-                <button class="sell-button">SELL</button>
-            `
+                <button class="sell-button" data-id="${id}" data-name="${name}">SELL</button>
+                `
 
             var modal = document.getElementById("myModal")
             var btn = document.querySelector(".sell-button")
             var span = document.getElementsByClassName("close")[0]
 
             btn.onclick = function() {
+                const cardName = this.getAttribute('data-name');
+                const modalTitle = document.querySelector('#myModal .modal-content h2');
+                modalTitle.textContent = `At what price do you want to sell the card ${cardName}?`;
                 modal.style.display = "block"
                 $("#cardId").val(id)
             }
@@ -81,7 +84,7 @@ function loadMarketCards(json) {
     })
 }
 
-function parseJwt (token) {
+function parseJwt(token) {
     var base64Url = token.split('.')[1]
     var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
     var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
@@ -95,7 +98,7 @@ function getCookie(cname) {
     let name = cname + "=";
     let decodedCookie = decodeURIComponent(document.cookie);
     let ca = decodedCookie.split(';');
-    for(let i = 0; i <ca.length; i++) {
+    for (let i = 0; i < ca.length; i++) {
         let c = ca[i];
         while (c.charAt(0) == ' ') {
             c = c.substring(1);
@@ -140,8 +143,8 @@ $(document).ready(function() {
             url: 'http://localhost:8090/market/sell',
             type: 'POST',
             contentType: 'application/json',
-            data: JSON.stringify({ "cardToSellId" : formData["id"], "sellerId": user_id, "price":  formData["price"]}),
-            xhrFields: {withCredentials: true},
+            data: JSON.stringify({ "cardToSellId": formData["id"], "sellerId": user_id, "price": formData["price"] }),
+            xhrFields: { withCredentials: true },
             crossDomain: true,
             success: function(response) {
                 alert('Données soumises avec succès.')

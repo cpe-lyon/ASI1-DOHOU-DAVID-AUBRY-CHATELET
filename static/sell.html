@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sell</title>
     <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link rel="stylesheet" type="text/css" href="css/modal.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
 </head>
 
@@ -85,12 +86,12 @@
         <div id="myModal" class="modal" style="display: none">
             <div class="modal-content">
                 <div style="display: flex;justify-content: space-between;">
-                    <h2>At what price do you want to sell the card {{card_name}}({{card_id}}) ?</h2>
+                    <h2>At what price do you want to sell the card {{card_name}} ?</h2>
                     <span class="close">&times;</span>
                 </div>
-                <form class="sell-form modal-form sell-card-form">
-                    <input type="number" id="cardId" name="card-id" style="visibility: hidden">
-                    <input type="number" id="cardPrice" name="card-price" required>
+                <form class="sell-form modal-form sell-card-form login-form">
+                    <input type="number" id="cardId" name="card-id" style="display: none">
+                    <input type="number" id="cardPrice" name="card-price" required placeholder="Price">
 
                     <div class="button-group">
                         <button type="reset">Reset</button>
@@ -104,6 +105,7 @@
     <script src="./lib/jquery-3.3.1.min.js"></script>
     <script src="./js/checkAuth.js" defer></script>
     <script src="./js/sell.js" defer></script>
+    <script src="./js/script.js" defer></script>
 </body>
 
 </html>
