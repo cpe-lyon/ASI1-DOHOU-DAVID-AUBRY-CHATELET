@@ -58,12 +58,83 @@ function loadMarketCards(json) {
                 <p><strong>Energy:</strong> ${energy}</p>
                 <p><strong>HP:</strong> ${hp}</p>
                 <p><strong>Price:</strong> $${price}</p>
-                <button class="sell-button">BUY</button>
+                <button class="buy-button" data-id="${id}" data-name="${name}">BUY</button>
             `
+
+            var modal = document.getElementById("myModal")
+            var btn = document.querySelector(".buy-button")
+            var span = document.getElementsByClassName("close")[0]
+
+            btn.onclick = function() {
+                const cardName = this.getAttribute('data-name');
+                const modalTitle = document.querySelector('#myModal .modal-content h2');
+                modalTitle.textContent = `do you want to buy the card ${name} for ${price}?`;
+                modal.style.display = "block"
+            }
+            span.onclick = function() {
+                modal.style.display = "none"
+            }
+
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none"
+                }
+            }
         })
     })
 }
 
+function parseJwt(token) {
+    var base64Url = token.split('.')[1]
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/')
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2)
+    }).join(''))
+
+    return JSON.parse(jsonPayload)
+}
+
+function getCookie(cname) {
+    let name = cname + "=";
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+        let c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+
 $(document).ready(function() {
+    const user_id = parseJwt(getCookie("token"))["user_id"]
+
     getMarketCards()
+
+    $('.buy-form').submit(function(event) {
+        event.preventDefault()
+
+        let button = document.querySelector('.buy-button')
+        let offerId = button.getAttribute("data-id");
+
+        $.ajax({
+            url: 'http://localhost:8000/market/buy',
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify({ "userId": user_id, "marketOfferId": offerId }),
+            xhrFields: { withCredentials: true },
+            crossDomain: true,
+            success: function(response) {
+                alert('Données soumises avec succès.')
+                window.location = './card'
+            },
+            error: function(xhr, status, error) {
+                alert('Erreur lors de la soumission des données: ' + error)
+            }
+        })
+    })
 })

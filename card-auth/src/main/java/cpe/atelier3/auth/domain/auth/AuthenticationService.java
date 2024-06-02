@@ -1,23 +1,24 @@
 package cpe.atelier3.auth.domain.auth;
 
-import cpe.atelier3.auth.domain.user.IUserRepository;
-import cpe.atelier3.commons.user.exception.InvalidTokenException;
-import cpe.atelier3.commons.user.exception.IncorrectPasswordException;
-import cpe.atelier3.commons.user.exception.UserDoesNotExistException;
 import cpe.atelier3.auth.domain.auth.jwt.JWTGenerator;
+import cpe.atelier3.auth.domain.user.IUserRepository;
 import cpe.atelier3.commons.user.User;
-import cpe.atelier3.auth.repository.user.UserRepository;
+import cpe.atelier3.commons.user.exception.IncorrectPasswordException;
+import cpe.atelier3.commons.user.exception.InvalidTokenException;
+import cpe.atelier3.commons.user.exception.UserDoesNotExistException;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
 import jakarta.servlet.http.Cookie;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
-import java.util.Optional;
+import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
 
 import static cpe.atelier3.auth.domain.auth.jwt.JWTGenerator.JWT_KEY;
 import static cpe.atelier3.auth.domain.auth.jwt.JWTGenerator.TTL;
+import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 
 @Service
 public class AuthenticationService {
@@ -48,6 +49,12 @@ public class AuthenticationService {
 
     public String checkAuthentication(String token) throws InvalidTokenException {
         try {
+            if (checkServiceToken(token)) {
+                return ""; // ça risque de casser des choses si on essaye d'accéder à certains endpoint avec un token de service, à voir la stratégie à employer
+            }
+        } catch (ResponseStatusException ignored) {
+        }
+        try {
             return Jwts.parser()
                     .verifyWith(JWT_KEY)
                     .build()
@@ -57,5 +64,12 @@ public class AuthenticationService {
         } catch (ExpiredJwtException e) {
             throw new InvalidTokenException();
         }
+    }
+
+    public boolean checkServiceToken(String token) {
+        if (! token.equals("secureservicetoken")) {
+            throw new ResponseStatusException(UNAUTHORIZED, "You are not authorized to access this endpoint.");
+        }
+        return true;
     }
 }
