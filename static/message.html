@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="navbar">
+        <div class="logo">
+            <h4>Card App</h4>
+        </div>
+        <ul class="nav-links">
+            <li>
+                <a href="/home.html">Home</a>
+            </li>
+            <li>
+                <a href="/card.html">Card</a>
+            </li>
+            <li>
+                <a href="/market.html">Market</a>
+            </li>
+            <li>
+                <a href="/play.html">Play</a>
+            </li>
+            <li>
+                <a class="active-link" href="/message.html">Message</a>
+            </li>
+
+        </ul>
+        <div style="display: flex; flex-direction: row;">
+            <a href="/login.html" id="user-link">
+                <div class="user">
+
+                    <div>
+                        <img src="assets/user.png" class="user-icon" alt="user-icon">
+                    </div>
+                    <div class="user-info">
+                        <h4 id="username">Login / Sign Up</h4>
+                        <p id="userwallet">199$</p>
+                    </div>
+                </div>
+            </a>
+
+            <a id="logout-tooltip" style="display: none;">
+                <img src="assets/logout.svg" class="user-icon" alt="Logout Icon">
+            </a>
+        </div>
+    </div>
+    <div class="content">
+
+    </div>
+    <script src="lib/jquery-3.3.1.min.js"></script>
+    <script src="js/displayName.js"></script>
+</body>
+
+</html>

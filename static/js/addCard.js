@@ -1,49 +1,38 @@
 $(document).ready(function() {
-    $('.ui.form').submit(function(event) {
-        event.preventDefault(); // Empêche le comportement par défaut de soumission du formulaire
+    $('.add-card-form').submit(function(event) {
+        event.preventDefault()
 
-        let formData = {};
-        let isFormValid = true;
+        let formData = {}
+        let isFormValid = true
 
         $(this).find('input').each(function() {
-            const name = $(this).attr('name').replace('card-', ''); // Simplifie le nom de l'attribut pour correspondre à l'API
-            const value = $(this).val().trim();
+            const name = $(this).attr('name').replace('card-', '')
+            const value = $(this).val().trim()
 
             if (value === '') {
-                alert('Veuillez remplir tous les champs.');
-                isFormValid = false;
-                return false; // Quitte la boucle .each
+                alert('Veuillez remplir tous les champs.')
+                isFormValid = false
+                return false
             }
-            formData[name] = $(this).attr('type') === 'number' ? parseInt(value, 10) : value;
-        });
+            formData[name] = $(this).attr('type') === 'number' ? parseInt(value, 10) : value
+        })
 
         if (!isFormValid) {
-            return; // Stoppe la fonction si le formulaire n'est pas valide
+            return
         }
 
-        // Envoi de la requête AJAX
         $.ajax({
-            url: 'http://localhost:8090/card/add',
+            url: 'http://localhost:8000/card/add',
             type: 'POST',
             contentType: 'application/json',
             data: JSON.stringify(formData),
             success: function(response) {
                 alert('Données soumises avec succès.')
-                window.location = './card-list'
+                window.location = './card'
             },
             error: function(xhr, status, error) {
-                alert('Erreur lors de la soumission des données: ' + error);
+                alert('Erreur lors de la soumission des données: ' + error)
             }
-        });
-        // $.post("http://localhost:8090/card/add",
-        // JSON.stringify(formData),
-        // function(data, status){
-        //     alert("Data: " + data + "\nStatus: " + status);
-        // },'json').done(function( response ) {
-        //     alert('Données soumises avec succès.')
-        //     window.location = '/card-list'
-        // }).fail(function (xhr, status, error){
-        //     alert('Erreur lors de la soumission des données: ' + error)
-        // });
-    });
-});
+        })
+    })
+})

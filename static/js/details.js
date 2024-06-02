@@ -8,7 +8,7 @@ function loadCardsDetails() {
 
     const cardId = urlParams.get('id');
 
-    fetch(`http://localhost:8090/card/${cardId}`).then((response) => {
+    fetch(`http://localhost:8000/card/${cardId}`).then((response) => {
         if (!response.ok) { alert("Card not found"); return;}
         response.json().then(card => {
             loadCardInTemplate(card);

@@ -1,32 +1,31 @@
 function login(event, form) {
-    event.preventDefault(); // Empêche la soumission standard du formulaire
+    event.preventDefault() // Empêche la soumission standard du formulaire
 
-    const formData = new FormData(form);
-    const username = formData.get('username');
-    const password = formData.get('password');
+    const formData = new FormData(form)
+    const username = formData.get('username')
+    const password = formData.get('password')
 
-    debugger
-    fetch('http://localhost:8090/auth/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ "username" : username, "password": password }),
-            credentials: 'include' // Nécessaire pour les cookies avec CORS
-        })
-        .then(response => {
-            if (response.status === 401 || response.status === 404) {
-                throw new Error('Unauthorized: Incorrect username or password.');
-            } else {
-                throw new Error('Something went wrong on the server.');
+    $.ajax({
+        url: 'http://localhost:8000/auth/login',
+        type: 'POST',
+        contentType: 'application/json',
+        data: JSON.stringify({ "username" : username, "password": password }),
+        crossDomain: true,
+        xhrFields: {
+            withCredentials: true
+        },
+        success: function(output, status, xhr) {
+            console.log('Login successful:')
+            window.location = './home'
+        },
+        error: function(xhr, status, error) {
+            switch (xhr.status) {
+                case 404:
+                case 401:
+                    throw new Error('Unauthorized: Incorrect username or password.')
+                default:
+                    alert('Erreur lors de la soumission des données: ' + error)
             }
-        })
-        .then(data => {
-            console.log('Login successful:', data);
-            // Vous pouvez rediriger l'utilisateur ou faire d'autres traitements ici
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert(error.message); // Affiche une alerte en cas d'erreur
-        });
+        }
+    })
 }
