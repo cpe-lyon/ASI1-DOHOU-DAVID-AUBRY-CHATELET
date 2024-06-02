@@ -405,3 +405,17 @@ th {
     width: 100%;
     margin-top: 10px;
 }
+
+#logout-tooltip {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+#logout-tooltip img {
+    width: 30px;
+    height: auto;
+}
